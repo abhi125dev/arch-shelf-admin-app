@@ -1,0 +1,63 @@
+// Normalize
+@import "normalize/variables";
+@import "normalize/vertical-rhythm";
+@import "normalize/normalize-mixin";
+
+@include normalize();
+
+@import "~react-big-calendar/lib/addons/dragAndDrop/styles.css";
+@import "~react-big-calendar/lib/css/react-big-calendar.css";
+
+@import "./grid";
+@import "./mixins";
+@import "./rbc.scss";
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap");
+@import url("https://db.onlinewebfonts.com/c/0d49fc455f4a8951a42daf952412a713?family=Helvetica+Neue");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.0/css/all.min.css");
+
+// @import "~antd/lib/style/themes/default.css";
+// @import "./antdcolors.less";
+// @import "~semantic-ui-css/semantic.min.css";
+// @import "~react-calendar/dist/Calendar.css";
+
+.ant-form-item {
+  margin: 0 !important;
+}
+
+.ant-form-item-explain.ant-form-item-explain-error {
+  text-align: left;
+  margin-bottom: -15px;
+}
+
+// .fake-input {
+//   height: 36px;
+//   border: 1.5px solid #f0f0f0;
+//   background: #ffffff;
+//   border-radius: 4px;
+//   padding: 0 3px;
+//   font-family: "Lato", sans-serif;
+// }
+
+.logo-image {
+  max-height: 35px;
+}
+
+.theme-green {
+  color: $green;
+}
+
+.label-desc {
+  color: $blur-color;
+  font-weight: $fw-medium;
+}
+
+/* Custom CKEditor styling */
+.ck-rounded-corners .ck.ck-editor__editable:not(.ck-editor__nested-editable),
+.ck.ck-editor__editable:not(.ck-editor__nested-editable).ck-rounded-corners {
+  max-height: 150px;
+  min-height: 150px;
+  line-height: 1.5em;
+  padding: 10px;
+  border: 1px solid #d1d1d1;
+}

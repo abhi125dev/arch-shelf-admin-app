@@ -1,0 +1,26 @@
+.custom-modal {
+  max-width: 946px;
+
+  @include responsive(dsm) {
+    max-width: 100%;
+  }
+  @include responsive(md) {
+    max-width: 575px;
+  }
+  @include responsive(lg) {
+    max-width: 946px;
+  }
+}
+.custom-modal-content {
+  border-radius: 0;
+  border: none;
+  padding: 41px 34px;
+  box-shadow: -1px 0px 15px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-backdrop {
+  background-color: $primary-color;
+}
+.modal-backdrop.show {
+  opacity: 0.8;
+}

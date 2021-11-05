@@ -1,0 +1,28 @@
+.progress-bar {
+  width: 100%;
+
+  + .progress-bar {
+    margin-top: 18px;
+  }
+
+  .label-bar {
+    display: inline-block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.12px;
+    white-space: nowrap;
+    color: #8798ad;
+    margin-bottom: 5px;
+  }
+
+  .bar {
+    width: 100%;
+    height: 16px;
+    background-color: #fff;
+    overflow: hidden;
+  }
+
+  .progress {
+    height: 100%;
+  }
+}

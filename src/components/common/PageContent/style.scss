@@ -1,0 +1,99 @@
+@import '~Styles/mixins';
+
+.page-content {
+  .page-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: #b0bac9;
+    padding: 50px;
+    
+    &.error {
+      color: #db2828;
+    }
+
+    .icon {
+      height: auto;
+      margin-right: 10px;
+    }
+  }
+
+  &.has-right-bar {
+    .content {
+      @include media(lg, true) {
+        padding-right: 250px;
+      }
+    }
+  }
+
+  .right-bar {
+    position: fixed;
+    z-index: 3;
+    top: 80px;
+    right: 10px;
+    bottom: 0;
+    width: 250px;
+    background-color: #fff;
+    transition: transform .15s ease-out;
+
+    #recite-wrapper & {
+      top: 140px;
+    }
+
+    .ui {
+      &.selection {
+        &.dropdown {
+          .icon:not(.delete):not(.close) {
+            z-index: 10;
+          }
+          min-width: 100%;
+          border: 1px solid rgba(34, 36, 38, .15);
+
+          &.active {
+            border-color: $blue;
+          }
+        }
+      }
+    }
+
+    @include media(lg) {
+      right: 0;
+      transform: translateX(100%);
+
+      &.open {
+        transform: translateX(-10px);
+      }
+    }
+
+    @include media(md) {
+      top: 60px;
+    }
+  }
+
+  .right-bar-toggle {
+    position: absolute;
+    top: 30px;
+    right: 100%;
+    padding: 10px 12px;
+    color: #fff;
+    border-radius: 4px 0 0 4px;
+    background-color: $blue;
+    cursor: pointer;
+
+    .icon {
+      margin-right: 0;
+      color: white;
+    }
+
+    @include media(lg, true) {
+      display: none;
+    }
+  }
+
+  .right-bar-content {
+    height: 100%;
+    padding: 30px 25px;
+    overflow-y: auto;
+  }
+}

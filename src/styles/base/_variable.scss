@@ -1,0 +1,177 @@
+// Size
+$full-width:100%;
+
+
+
+// fonts
+$primary-font:'Lato', sans-serif;
+$secondary-font:"Helvetica Neue";
+
+
+
+
+// font size
+$h1: 35px;
+$h2: 68px;
+$h3: 31px;
+$h4: 24px;
+$h5: 20px;
+$h6: 14px;
+$p: 14px;
+$mid-font:13px;
+$small-font:12px;
+
+
+
+// font weight
+$fw-thin:100;
+$fw-exlight:200;
+$fw-light:300;
+$fw-regular:400;
+$fw-medium:500;
+$fw-semibold:600;
+$fw-bold:700;
+$fw-exbold:800;
+$fw-black:900;
+
+h1 {
+    font-size: $h1;
+}
+
+h2 {
+    font-size: $h2;
+}
+
+h3 {
+    font-size: $h3;
+}
+
+h4 {
+    font-size: $h4;
+}
+
+h5 {
+    font-size: $h5;
+}
+
+h6 {
+    font-size: $h6;
+}
+
+@mixin mb-10 {
+    margin-bottom: 10px;
+}
+
+@mixin mb-15 {
+    margin-bottom: 15px;
+}
+
+@mixin mb-20 {
+    margin-bottom: 20px;
+}
+
+@mixin mb-30 {
+    margin-bottom: 30px;
+}
+
+@mixin mb-40 {
+    margin-bottom: 40px;
+}
+
+@mixin mb-50 {
+    margin-bottom: 50px;
+}
+
+@mixin pb-20 {
+    padding-bottom: 20px;
+}
+
+@mixin pb-30 {
+    padding-bottom: 30px;
+}
+
+@mixin pb-40 {
+    padding-bottom: 40px;
+}
+
+@mixin pb-50 {
+    padding-bottom: 50px;
+}
+
+@mixin dflex {
+    display: flex;
+    align-items: center;
+}
+
+@mixin dflex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin dflex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin dflex-end {
+    display: flex;
+    align-items: flex-end;
+}
+
+@mixin transition {
+    transition: all 0.5s ease 0s;
+}
+
+@mixin custom-padd {
+    padding: 100px 0 50px;
+}
+
+@mixin commn-padd {
+    padding: 100px 0;
+}
+
+@mixin commn-sm-padd {
+    padding: 75px 0;
+}
+
+// responisve
+@mixin responsive($breakpoint) {
+    @if $breakpoint==xl {
+        @media (min-width: 1200px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==lg {
+        @media (min-width: 992px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==md {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==sm {
+        @media (min-width: 576px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==dsm {
+        @media (min-width: 319px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==betweensm {
+        @media (min-width:330px) and (max-width:485px) {
+            @content;
+        }
+    }
+
+}

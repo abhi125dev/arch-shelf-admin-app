@@ -1,0 +1,99 @@
+.appointment-header {
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	flex-wrap:wrap;
+	padding:20px 25px 0;
+	margin-bottom:65px;
+}
+
+.o-pagination {
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+
+		.pagination {
+			max-width:76px;
+			flex:0 0 76px;
+			height:30px;
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			margin-left:25px;
+			border:1px solid $gray-color2;
+			border-radius:4px;
+			padding:0 8px;
+
+				.prev, .next {
+					color:$light-blue3;
+					font-size: 16px;
+
+					&:hover {
+						color:$green-color;
+					}
+				}
+		}
+}
+
+.o-view {
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	max-width: 60px;
+    flex: 0 0 60px;
+
+
+		.list-view, .calendar-view {
+			color:$light-blue4;
+			font-size: 23px;
+
+			&.active {
+				color:$green-color;
+			}
+		}
+}
+
+.calender-wrap {
+	margin-bottom:25px;
+}
+
+.timezone-dropdown {
+	position:relative;
+	display: flex;
+    align-items: center;
+}
+
+.current-date {
+	font-size:19px;
+	line-height:23px;
+	color:$gray-color7;
+	display:block;
+	margin-bottom:20px;
+	font-weight:$fw-regular;
+}
+.time-slot-list {
+
+	 li{
+	 	display:block;
+	 	margin-bottom:21px;
+
+	 	&:last-child {
+	 		margin-bottom:0;
+	 	}
+
+	 	a {
+	 		display:block;
+	 		color:$blur-color3;
+	 		font-size:16px;
+	 		text-align:center;
+	 		border:1px solid $blur-color3;
+	 		border-radius:4px;
+	 		font-weight:$fw-regular;
+
+	 			@include responsive(dsm) {
+	 				width:100%;
+	 				padding: 15px 0;
+	 			}
+	 	}
+	 }
+}

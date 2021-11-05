@@ -1,0 +1,137 @@
+// @import '~Styles/mixins';
+
+// .left-menu {
+// 	position: relative;
+// 	flex: 0 0 215px;
+// 	max-width: 215px;
+// 	background: $charcoal-grey;
+// 	transition: transform 0.15s ease-out;
+// 	display: flex;
+// 	flex-direction: column;
+
+// 	.menu-wrap {
+// 		list-style: none;
+// 		padding: 0;
+// 		margin: 0;
+// 	}
+
+// 	.menu-item {
+// 		position: relative;
+// 		cursor: pointer;
+// 		color: #fff;
+
+// 		&.has-customer-logo {
+// 			padding: 15px 20px;
+
+// 			img {
+// 				height: auto;
+// 			}
+
+// 			.ui {
+// 				&.dropdown {
+// 					.menu {
+// 						width: calc(100vw - 40px);
+// 						max-width: 320px;
+// 						min-width: 0;
+
+// 						> .item {
+// 							display: flex;
+// 							align-items: flex-start;
+// 							white-space: normal;
+
+// 							img {
+// 								margin-top: 0;
+// 								margin-bottom: 0;
+// 							}
+// 						}
+// 					}
+// 				}
+// 			}
+
+// 			@include media(md, true) {
+// 				display: none;
+// 			}
+// 		}
+
+// 		i {
+// 			display: inline-block;
+// 			color: $lightly-gray;
+// 		}
+// 	}
+
+// 	.link {
+// 		display: block;
+// 		line-height: 20px;
+// 		padding: 19px 20px 17px;
+// 		transition: all 0.15s ease-out;
+
+// 		&.active,
+// 		&:hover {
+// 			color: $blue;
+// 			background-color: rgba(46, 56, 77, 0.1);
+
+// 			&::before {
+// 				content: '';
+// 				position: absolute;
+// 				top: 0;
+// 				left: 0;
+// 				display: block;
+// 				width: 3px;
+// 				height: 100%;
+// 				background: $lightly-gray;
+// 			}
+
+// 			span {
+// 				color: #fff;
+// 			}
+// 		}
+
+// 		span {
+// 			font-size: 15px;
+// 			color: #fff;
+// 			padding-left: 16px;
+// 		}
+// 	}
+
+// 	.bottom-logo {
+// 		position: absolute;
+// 		bottom: 0;
+// 		left: 50%;
+// 		transform: translateX(-50%);
+// 		background-color: #fff;
+// 		width: 100%;
+// 		text-align: center;
+// 		padding: 10px 0;
+// 		img {
+// 			width: 103px;
+// 		}
+// 		&-copyright {
+// 			font-size: 13px;
+// 			padding: 0 10px;
+// 		}
+// 	}
+
+// 	@include media(md) {
+// 		position: absolute;
+// 		z-index: 100;
+// 		min-height: calc(100vh - 60px);
+// 		top: 0;
+// 		left: 0;
+// 		transform: translateX(-100%);
+
+// 		&.open {
+// 			transform: translateX(0);
+// 		}
+// 	}
+// 	button {
+// 		display: inline-block;
+// 	}
+// 	.mtext {
+// 		position: relative;
+// 		top: -7px;
+// 		padding-left: 10px;
+// 	}
+// }
+// html.zohohc-asap-web-viewer-opened .mtext {
+// 	top: -13px;
+// }

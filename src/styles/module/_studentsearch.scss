@@ -1,0 +1,104 @@
+.search-area {
+  @include responsive(dsm) {
+    margin-bottom: 22px;
+  }
+}
+.search-wrapper {
+  background: $primary-color;
+  padding: 15px 0px 15px;
+}
+.check-style {
+  position: relative;
+  font-weight: $fw-bold;
+  padding: 0 0 0 35px;
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 24px;
+
+  i {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $gray-color3;
+    left: 0;
+    overflow: hidden;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &:before {
+      content: "";
+      background: $green-color;
+      width: 25px;
+      height: 25px;
+      position: absolute;
+      opacity: 0;
+    }
+
+    &:after {
+      content: "";
+      background: url("../../../assets/images/check-mark.jpg") no-repeat center;
+      background-size: 63%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+    }
+  }
+
+  input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &:checked ~ i:after,
+    &:checked ~ i:before {
+      opacity: 1;
+    }
+  }
+}
+
+.stydent-search-list {
+  table-layout: auto;
+
+  td {
+    font-size: 13px;
+    color: $blur-color;
+    vertical-align: middle;
+    text-align: center;
+    padding: 15px 22px;
+    line-height: 24px;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+}
+.chose-item {
+  display: inline-block;
+  padding: 5px 20px;
+
+  img {
+    max-width: inherit;
+  }
+}
+
+@include responsive(sm) {
+}
+
+@include responsive(md) {
+}
+
+@include responsive(lg) {
+}
+
+@include responsive(xl) {
+}

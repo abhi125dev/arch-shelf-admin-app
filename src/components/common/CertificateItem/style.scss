@@ -1,0 +1,46 @@
+.certificate-item {
+  text-align: center;
+  border-top-right-radius: 7px;
+  border-top-left-radius: 7px;
+  background-color: #fff;
+  margin-bottom: 2rem;
+  overflow: hidden;
+
+  .preview-img {
+    height: 150px;
+    background: #ccc;
+    background-size: cover;
+  }
+
+  .info {
+    padding: 0 10px 20px 10px;
+  }
+
+  .name {
+    display: inline-block;
+    color: $text-color;
+    margin: 15px 0 10px 0;
+  }
+
+  .description {
+    font-size: 12px;
+    color: #606d7c;
+    margin-bottom: 4px;
+  }
+
+  a {
+    display: block;
+  }
+
+  .ui {
+    &.button {
+      &.basic {
+        &.blue {
+          font-size: 15px;
+          color: $blue !important;
+          box-shadow: none !important;
+        }
+      }
+    }
+  }
+}

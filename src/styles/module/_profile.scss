@@ -1,0 +1,130 @@
+.profile-wrapper {
+		background:$primary-color;
+	    padding: 39px 34px 30px;
+
+
+	    	.large-button {
+
+	    		@include responsive(dsm) {
+	    			margin-top:16px;
+	    		}
+	    	}
+	}
+
+	.profile-info, .school-info, .career-info {
+		padding-bottom:17px;
+		margin-bottom:17px;
+		border-bottom:1px solid $gray-color2;
+	}
+
+	.info-box {
+		padding-bottom:17px;
+		margin-bottom:17px;
+		border-bottom:1px solid $gray-color2;
+
+	    	.small-heading {
+
+	    		@include responsive(dsm) {
+	    			margin-bottom:20px;
+	    		}
+	    	}
+	}
+
+	.pro-place-inner {
+		display:flex;
+		align-items: center;
+	}
+
+	.picture {
+		width:67px;
+		height:67px;
+		border-radius:50%;
+		overflow:hidden;
+		margin-right:16px;
+
+			img {
+				width:100%;
+				height:100%;
+			}
+	}
+
+	.info {
+
+		.page-sub-heading {
+			margin-bottom:4px;
+		}
+		.email {
+			margin-bottom:0px;
+		}
+		.phone {
+			margin-top:0px;
+		}
+	}
+	.email {
+		font-size:13px;
+		color:$blur-color2;
+		display:block;
+		line-height:24px;
+		font-weight:$fw-regular;
+	}
+	.phone {
+		font-size:13px;
+		color:$blur-color;
+		display:block;
+		line-height:24px;
+		font-weight:$fw-regular;
+	}
+
+	.address {
+		font-size:13px;
+		color:$blur-color;
+		line-height:24px;
+		font-weight:$fw-regular;
+	}
+
+	.degree {
+
+		span {
+			font-size:13px;
+			color:$blur-color;
+			line-height: 24px;
+			font-weight:$fw-regular;
+		}
+	}
+
+.student-booking {
+	display:flex;
+	justify-content: space-between;
+	flex-wrap:wrap;
+
+	@include responsive(dsm) {
+		margin-bottom:25px;
+	 }
+
+	@include responsive(md) { 
+		margin-bottom:25px;
+
+			h1 {
+				margin-bottom: 15px;
+			}
+	}
+
+	@include responsive(lg) { 
+		flex-direction: inherit;
+
+			h1 {
+				margin-bottom:0px;
+			}
+	}
+
+}
+
+
+
+@include responsive(sm) {}
+
+@include responsive(md) {}
+
+@include responsive(lg) {}
+
+@include responsive(xl) {}

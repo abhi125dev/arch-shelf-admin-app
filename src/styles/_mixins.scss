@@ -1,0 +1,87 @@
+@import './functions';
+
+@mixin body-class($class, $not: false) {
+  @if $not {
+    body:not(#{$class}) & {
+      @content;
+    }
+  } @else {
+    body#{$class} & {
+      @content;
+    }
+  }
+}
+
+@mixin heading-tags {
+  @for $i from 1 through 6 {
+    h#{$i} {
+      @content;
+    }
+  }
+}
+
+@mixin media($breakpoints: sm, $min: false) {
+  @if type-of($breakpoints) == 'list' and length($breakpoints) == 2 {
+    @media screen and (min-width: (breakpoint(nth($breakpoints, 1)) + 1)) and (max-width: breakpoint(nth($breakpoints, 2))) {
+      @content;
+    }
+  } @else if (type-of($breakpoints) != 'list') {
+    $breakpoint: if(type-of($breakpoints) == 'number', $breakpoints, breakpoint($breakpoints));
+
+    @if $min {
+      @media screen and (min-width: ($breakpoint + 1)) {
+        @content;
+      }
+    } @else {
+      @media screen and (max-width: $breakpoint) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin center-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate3d(-50%, -50%, 0);
+}
+
+@mixin flex-col($width: 100%) {
+  flex-basis: $width;
+  max-width: $width;
+}
+
+@mixin overlay($position: absolute, $z-index: 3) {
+  position: $position;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-index;
+}
+
+@mixin clear-fix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin radial-box($radial) {
+  &::before {
+    content: '';
+    position: relative;
+    display: block;
+    width: 100%;
+    padding-top: $radial;
+    z-index: -1;
+  }
+}
+
+@mixin transition($property: all, $duration: .15s, $t-func: linear) {
+  transition: $duration $t-func;
+  transition-property: $property;
+}

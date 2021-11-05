@@ -1,0 +1,66 @@
+.root {
+	transform: rotate(45deg);
+	border-radius: 30%;
+	animation-duration: inherit;
+	animation-fill-mode: none;
+	transition: all 0.2s cubic-bezier(0.42, 0, 0, 0.92);
+	padding: 5px;
+	box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.24);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	background: var(--zohohc_asap_web_applauncher_bg);
+	overflow: hidden;
+	border: none;
+	outline: none;
+}
+
+.content {
+	transform: rotate(-45deg);
+	width: var(--zohohc_asap_web_launcher_icon_width);
+	height: var(--zohohc_asap_web_launcher_icon_height);
+}
+.wrap {
+	height: inherit;
+	justify-content: center;
+}
+.icon {
+	display: flex;
+	height: inherit;
+	box-sizing: content-box;
+	justify-content: center;
+	color: var(--zohohc_asap_web_applauncher_iconclr);
+	width: auto;
+}
+.svg {
+	width: inherit;
+	fill: currentColor;
+	color: inherit;
+	&.opened {
+		width: 150%;
+		height: 150%;
+		margin-top: -25%;
+	}
+}
+.maindiv {
+	padding: 7px;
+	padding-left: 12px;
+	outline: none !important;
+    border: none !important;
+}
+.maindiv:hover,
+.maindiv.active {
+	background-color: rgba(46, 56, 77, 0.1);
+}
+.maindiv.active:before,
+.maindiv:hover:before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: block;
+	width: 3px;
+	height: 100%;
+	background: #bfc5d2;
+}

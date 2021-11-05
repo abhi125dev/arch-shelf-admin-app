@@ -1,0 +1,9 @@
+@import './variables';
+
+@function rem-size($size) {
+  @return $size / $font-size * 1rem;
+}
+
+@function breakpoint($breakpoint: sm) {
+  @return map_get($responsive-breakpoints, $breakpoint);
+}

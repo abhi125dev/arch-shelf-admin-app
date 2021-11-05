@@ -1,0 +1,209 @@
+.login-wrapper {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  //padding-left: 15px;
+  //padding-right: 15px;
+
+  @include responsive(dsm) {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    min-height: auto;
+  }
+
+  @include responsive(md) {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    min-height: 100vh;
+  }
+}
+
+.login-holder {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  @include responsive(dsm) {
+    flex-direction: column;
+    padding-top: 30px;
+  }
+
+  @include responsive(md) {
+    padding-top: 0px;
+    justify-content: space-between;
+  }
+  @include responsive(xl) {
+    justify-content: center;
+  }
+}
+
+.login-inner {
+  max-width: 348px;
+  margin: 0 auto;
+  width: 100%;
+
+  figure {
+    @include responsive(dsm) {
+      margin-bottom: 25px;
+    }
+    @include responsive(md) {
+      margin-bottom: 30px;
+    }
+    @include responsive(lg) {
+      margin-bottom: 64px;
+    }
+  }
+
+  h1 {
+    @include responsive(dsm) {
+      margin-bottom: 25px;
+    }
+    @include responsive(md) {
+      margin-bottom: 30px;
+    }
+    @include responsive(lg) {
+      margin-bottom: 64px;
+    }
+  }
+
+  @include responsive(dsm) {
+    margin-bottom: 25px;
+  }
+
+  @include responsive(md) {
+    margin-bottom: 0px;
+  }
+}
+
+.input-style {
+  width: $full-width;
+}
+
+.forget-link {
+  display: inline-block;
+  font-size: 13px;
+  color: $light-blue;
+  line-height: 24px;
+  font-weight: $fw-bold;
+  bottom: 48px;
+  left: 0;
+  right: 0;
+
+  @include responsive(dsm) {
+    position: static;
+  }
+
+  @include responsive(lg) {
+    position: absolute;
+  }
+}
+
+.form-group-custom {
+  margin-bottom: 19px;
+}
+
+.form-footer {
+  padding-top: 7px;
+
+  .text-divider {
+    display: block;
+    margin: 19px 0;
+    font-size: 11px;
+    line-height: 24px;
+    color: $light-blue2;
+  }
+}
+
+$white: #fff;
+$google-blue: #4285f4;
+$button-active-blue: #1669f2;
+
+.google-btn {
+  width: 170px;
+  outline: none;
+  border: none;
+  height: 40px;
+  padding-bottom: 12px;
+  background-color: $google-blue;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 2px;
+    margin-left: -3px;
+    width: 40px;
+    height: 34px;
+    border-radius: 2px;
+    background-color: $white;
+  }
+  .google-icon {
+    margin-top: 9px;
+    width: 18px;
+    height: 16px;
+  }
+  .btn-text {
+    margin: 9px 9px 0 0;
+    color: $white;
+    text-align: center;
+    font-weight: $fw-bold;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+  }
+  &:hover {
+    box-shadow: 0 0 6px $google-blue;
+  }
+  &:active {
+    background: $button-active-blue;
+  }
+  &:after {
+    outline: none;
+  }
+}
+
+.microsoft-btn {
+  width: 170px;
+  outline: none;
+  border: none;
+  height: 40px;
+  padding-bottom: 12px;
+  background-color: $green-color;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 2px;
+    margin-left: -3px;
+    width: 40px;
+    height: 34px;
+    border-radius: 2px;
+    background-color: $white;
+  }
+  .google-icon {
+    margin-top: 9px;
+    width: 18px;
+    height: 16px;
+  }
+  .btn-text {
+    margin: 9px 9px 0 0;
+    color: $white;
+    text-align: center;
+    font-weight: $fw-bold;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+  }
+  &:hover {
+    box-shadow: 0 0 6px $green-color;
+  }
+  &:active {
+    background: $green-color;
+  }
+  &:after {
+    outline: none;
+  }
+}

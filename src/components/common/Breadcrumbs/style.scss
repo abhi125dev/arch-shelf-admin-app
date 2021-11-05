@@ -1,0 +1,9 @@
+.breadcrumbs {
+	margin: 20px 0 40px 0;
+	color: $text-color;
+	font-size: 15px;
+
+	span {
+		text-transform: capitalize;
+	}
+}

@@ -1,0 +1,34 @@
+@charset "utf-8";
+
+// base style
+@import "base/color";
+@import "base/fonts";
+@import "base/variable";
+@import "base/header";
+@import "base/menu";
+@import "base/sideber";
+@import "base/body";
+
+@import "colors";
+@import "variables";
+// @import "./bootstrap.min.css";
+
+// component style
+@import "component/button";
+@import "component/components";
+@import "component/modal";
+
+// module style
+// @import "module/login";
+// @import "module/studentsearch";
+// @import "module/profile";
+// @import "module/student-profile";
+// @import "module/dashboard";
+@import "module/task.scss";
+// @import "module/timelog.scss";
+// @import "module/report.scss";
+// @import "module/appointments.scss";
+// @import "module/calendar.scss";
+
+// responsive style
+@import "responsive";

@@ -1,0 +1,44 @@
+.circle-progress-bar {
+	position: relative;
+	height: 110px;
+	overflow: hidden;
+	.progress-count {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		transform: translateX(-50%);
+		text-align: center;
+		.count {
+			display: block;
+			color: $text-color;
+			font-size: 36px;
+			line-height: 35px;
+		}
+		.text {
+			font-size: 13px;
+			line-height: 18px;
+			text-transform: uppercase;
+			letter-spacing: 1.2px;
+		}
+	}
+	.loader {
+		stroke: #bfc5d2;
+		stroke-width: 18;
+		stroke-dasharray: 186, 350;
+		transform-origin: center;
+		transform: rotate(172deg);
+		fill: transparent;
+	}
+	.loader.main {
+		stroke: $blue;
+		stroke-dasharray: 0, 350;
+	}
+	.dash {
+		stroke: #fff;
+		stroke-width: 20;
+		stroke-dasharray: 4 2;
+		transform-origin: center;
+		transform: rotate(133deg);
+		fill: transparent;
+	}
+}

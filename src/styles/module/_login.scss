@@ -1,0 +1,131 @@
+.login-wrapper {
+	position:relative;
+	display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    //padding-left: 15px;
+    //padding-right: 15px;
+
+    @include responsive(dsm){
+    	padding-top:15px;
+    	padding-bottom:15px;
+    	min-height:auto;
+    }
+
+    @include responsive(md){
+    	padding-top:0px;
+    	padding-bottom:0px;
+    	min-height:100vh;
+    }
+}
+
+
+
+.login-holder {
+	position:relative;
+	height:100%;
+	display:flex;
+	align-items:center;
+	text-align:center;
+	justify-content: center;
+
+	@include responsive(dsm){ 
+		flex-direction:column;
+		padding-top:30px;
+	}
+
+	@include responsive(md){
+		padding-top:0px;
+		justify-content: space-between;
+	}
+	@include responsive(xl){ 
+		justify-content: center;
+	}
+}
+
+.login-inner {
+	max-width:348px;
+	margin:0 auto;
+	width: 100%;
+
+		figure {
+			
+			@include responsive(dsm){
+				margin-bottom:25px;
+			 }
+			@include responsive(md){ 
+				margin-bottom:30px;
+			}
+			@include responsive(lg){ 
+				margin-bottom:64px;
+			}
+		}
+
+		h1 {
+
+			@include responsive(dsm){
+				margin-bottom:25px;
+			 }
+			@include responsive(md){ 
+				margin-bottom:30px;
+			}
+			@include responsive(lg){ 
+				margin-bottom:64px;
+			}
+		}
+
+		@include responsive(dsm){
+			margin-bottom:25px;
+		 }
+
+		@include responsive(md){ 
+			margin-bottom:0px;
+		}
+}
+
+
+
+
+.input-style {
+	width:$full-width;
+}
+
+.forget-link {
+	display: inline-block;
+	font-size:13px;
+	color:$light-blue;
+	line-height:24px;
+	font-weight:$fw-bold;
+    bottom: 48px;
+    left: 0;
+    right: 0;
+
+    @include responsive(dsm){
+    	position:static;
+    }
+
+
+    @include responsive(lg){
+    	position: absolute;
+     }
+}
+
+.form-group-custom {
+	margin-bottom:19px;
+}
+
+.form-footer {
+	padding-top:7px;
+
+		.text-divider {
+			display:block;
+			margin:19px 0;
+			font-size:11px;
+			line-height:24px;
+			color:$light-blue2;
+		}
+
+
+}

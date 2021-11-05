@@ -1,0 +1,277 @@
+.white-box {
+  background: $primary-color;
+  padding: 39px 34px 30px;
+  box-shadow: -1px 3px 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  // min-height: 416px;
+  position: relative;
+
+  h2 {
+    margin-bottom: 16px;
+  }
+
+  .icon-button {
+    @include responsive(dsm) {
+      position: absolute;
+      bottom: 23px;
+    }
+
+    @include responsive(md) {
+      position: static;
+    }
+
+    @include responsive(lg) {
+      position: absolute;
+    }
+  }
+}
+
+.appoint-list {
+  display: block;
+  //margin-bottom:50px;
+
+  li {
+    display: block;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $header-border-color;
+    color: $blur-color;
+
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    a {
+      color: $blur-color;
+      font-size: 12px;
+    }
+    .current {
+      text-transform: uppercase;
+      color: $green-color;
+      font-size: 12px;
+      line-height: 24px;
+      font-weight: $fw-regular;
+      margin-bottom: 1px;
+      display: block;
+    }
+
+    h6 {
+      font-weight: $fw-bold;
+      font-size: 13px;
+      line-height: 24px;
+      color: $blur-color-menu;
+    }
+
+    p {
+      margin-bottom: 0;
+      font-size: 13px;
+      line-height: 24px;
+      font-weight: $fw-regular;
+    }
+  }
+}
+
+.student-list {
+  display: block;
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+    h6 {
+      font-weight: $fw-bold;
+      font-size: 13px;
+      line-height: 24px;
+    }
+
+    p {
+      font-weight: $fw-regular;
+      margin-bottom: 0;
+      font-size: 13px;
+      line-height: 24px;
+    }
+
+    a {
+      color: $green-color;
+    }
+  }
+}
+
+.card-box {
+  background: $primary-color;
+  margin-bottom: 17px;
+  height: 127px;
+  box-shadow: -1px 3px 5px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    padding: 0px 36px 0px;
+    display: flex;
+    align-items: center;
+    height: 114px;
+    width: 100%;
+  }
+
+  span {
+    margin-right: 32px;
+    color: $green-color;
+    font-size: 30px;
+  }
+}
+
+.holder {
+  h2 {
+    margin-bottom: 3px;
+  }
+
+  p {
+    margin-bottom: 0;
+    font-size: 13px;
+    color: $blur-color;
+    line-height: 24px;
+  }
+}
+
+.mobile-spacing {
+  margin-bottom: 25px;
+}
+
+.custom-table-style {
+  thead {
+    th {
+      color: $disavled-color;
+      font-size: 13px;
+      font-weight: $fw-regular;
+      border: none;
+      line-height: 22px;
+    }
+  }
+
+  td {
+    font-size: 13px;
+    color: $blur-color;
+    vertical-align: middle;
+    line-height: 24px;
+    font-weight: $fw-regular;
+
+    &:first-child {
+      min-width: 140px;
+
+      @include responsive(dsm) {
+      }
+      @include responsive(md) {
+        min-width: 212px;
+      }
+    }
+
+    &:last-child {
+      min-width: 166px;
+    }
+  }
+}
+
+.text-bold {
+  font-weight: $fw-bold;
+}
+
+.radio-style {
+  position: relative;
+  padding: 0 0 0 35px;
+  margin-bottom: 0;
+  font-size: 13px;
+  line-height: 24px;
+  font-weight: $fw-bold;
+
+  i {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 1px solid $checkbox-border;
+    border-radius: 50%;
+    top: 5px;
+    left: 0;
+    overflow: hidden;
+
+    &:before {
+      content: "";
+      background: $green-color;
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0;
+    }
+
+    &:after {
+      content: "";
+      background: url("../../../assets/images/check-mark.jpg") no-repeat center;
+      background-size: 63%;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+    }
+  }
+
+  input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    &:checked ~ i:after,
+    &:checked ~ i:before {
+      opacity: 1;
+    }
+  }
+}
+
+@include responsive(sm) {
+  .white-box {
+    background: $primary-color;
+    padding: 39px 34px 30px;
+    box-shadow: -1px 3px 5px 0 rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    // min-height: 416px;
+    position: relative;
+  }
+}
+
+@include responsive(md) {
+  .white-box {
+    min-height: auto;
+  }
+
+  .custom-table-style td:first-child {
+    min-width: 170px;
+  }
+  .custom-table-style td:last-child {
+    min-width: 142px;
+  }
+}
+
+@include responsive(lg) {
+  .custom-table-style td:first-child {
+    min-width: 212px;
+  }
+  .custom-table-style td:last-child {
+    min-width: 166px;
+  }
+}
+
+@include responsive(xl) {
+}

@@ -1,0 +1,50 @@
+.left-panel {
+  max-width: 100%;
+  flex: 0 0 100%;
+  background: $primary-color;
+  padding: 45px 0 25px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+
+  @include responsive(dsm) {
+    width: 242px;
+    flex: 0 0 242px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 66;
+    transform: translateX(-100%);
+    height: 100%;
+  }
+
+  @include responsive(md) {
+    max-width: 33%;
+    flex: 0 0 33%;
+    position: static;
+    transform: translateX(0);
+    height: inherit;
+  }
+
+  @include responsive(lg) {
+    max-width: 242px;
+    flex: 0 0 242px;
+  }
+
+  .button-style {
+    margin: auto;
+  }
+
+  &.slide {
+    @include responsive(dsm) {
+      transform: translateX(0);
+      overflow-y: auto;
+    }
+    @include responsive(md) {
+      overflow-y: inherit;
+    }
+  }
+}

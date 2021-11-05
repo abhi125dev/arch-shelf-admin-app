@@ -1,0 +1,72 @@
+.list-heading {
+	color:$disavled-color;
+    font-size: 13px;
+    font-weight:$fw-regular;
+    padding: 12px 12px;
+    border-bottom: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
+    line-height:22px;
+
+    	i {
+    		margin-right:7px;
+    	}
+}
+
+.task-listing {
+	display:block;
+
+		li {
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			font-size: 11px;
+			line-height:24px;
+		    color:$light-blue3;
+		    vertical-align: middle;
+		    padding: 12px 12px;
+		    border-bottom: 1px solid #dee2e6;
+
+		    	p {
+					font-size: 13px;
+				    color:$blur-color-menu;
+				    margin-bottom:0;
+				    line-height:24px;
+				    font-weight:$fw-regular;
+
+		    	}
+
+		    	input:disabled ~ p {
+		    		color:$light-blue3;
+		    	}
+		    	input:checked ~ p {
+		    		font-weight:$fw-bold;
+		    	}
+		    	input:disabled ~ i {
+		    		border-color:$disavled-color;
+		    	}
+
+		    	.task-date {
+		    		max-width:128px;
+		    		position:relative;
+		    		flex:0 0 128px;
+		    		color: $disavled-color
+		    	}
+		}
+}
+
+
+@include responsive(sm) { }
+
+@include responsive(md) {
+
+
+
+
+ }
+
+@include responsive(lg) { }
+
+@include responsive(xl) {
+
+
+ }

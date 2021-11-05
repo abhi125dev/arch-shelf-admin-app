@@ -1,0 +1,124 @@
+.header-wrapper {
+  background: $primary-color;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // padding: 11px 30px;
+  padding: 0.5rem;
+  border-bottom: 1px solid $header-border-color;
+}
+
+.right-side-header {
+  display: flex;
+  align-items: center;
+  min-width: 269px;
+  justify-content: flex-end;
+}
+.ham-menu {
+  font-size: 30px;
+  font-size: 22px;
+  color: $green-color;
+  cursor: pointer;
+  margin-left: 25px;
+
+  @include responsive(dsm) {
+    display: block;
+  }
+  @include responsive(md) {
+    display: none;
+  }
+}
+
+.header-profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include responsive(dsm) {
+    max-width: 204px;
+    flex: 0 0 204px;
+  }
+  @include responsive(md) {
+    max-width: 235px;
+    flex: 0 0 235px;
+  }
+
+  a.text-btm {
+    color: $green-color;
+    font-size: 13px;
+    line-height: 24px;
+    font-weight: $fw-regular;
+  }
+}
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+
+  a {
+    color: $blur-color-menu;
+
+    @include responsive(dsm) {
+      font-size: 12px;
+      font-family: $primary-font;
+      font-weight: $fw-bold;
+      line-height: 24px;
+    }
+    @include responsive(md) {
+      font-size: 13px;
+    }
+  }
+
+  &:after {
+    border-top-color: $blur-color-menu;
+    margin-left: 7px;
+  }
+}
+.profile-pic {
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 10px;
+
+  @include responsive(dsm) {
+    width: 30px;
+    height: 30px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+}
+
+@include responsive(sm) {
+}
+
+@include responsive(md) {
+}
+
+@include responsive(lg) {
+}
+
+@include responsive(xl) {
+}
+
+@include responsive(betweensm) {
+  .header-wrapper {
+    padding: 11px 9px;
+  }
+  .profile-pic {
+    width: 30px;
+    height: 30px;
+  }
+  .profile-menu a {
+    font-size: 12px;
+  }
+  .header-profile a.text-btm {
+    font-size: 12px;
+  }
+  .header-profile {
+    max-width: 190px;
+    flex: 0 0 190px;
+  }
+}

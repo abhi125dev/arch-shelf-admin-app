@@ -1,0 +1,80 @@
+.log-wrapper {
+	border:1px solid $gray-color5;
+	border-radius:4px;
+	padding:30px;
+
+		h2 {
+			margin-bottom:24px;
+		}
+
+		label {
+			display:block;
+		}
+}
+
+
+
+
+.textarea-style {
+	border:1px solid $gray-color;
+	width:100%;
+	border-radius:4px;
+	padding: 8px 11px;
+}
+
+.progress-wrapper {
+	padding:30px 0 30px;
+	max-width:100%;
+	margin:0 auto;
+
+	@include responsive(xl) {
+		max-width:335px;
+	 }
+
+		h2 {
+			margin-bottom:24px;
+		}
+}
+
+.progress-holder {
+
+	margin-bottom:32px;
+	
+	.progress-bar {
+		height:7px;
+		border-radius: 30px;
+		position: relative;
+		overflow: inherit;
+
+		i {
+			position:absolute;
+			top:50%;
+			transform:translateY(-50%);
+			left:100%;
+			color:$blur-color;
+			font-size:13px;
+			display:inline-block;
+			text-transform: capitalize;
+		    font-style: normal;
+		    margin-left: 9px;
+		}
+	}
+
+	span {
+		color:$blur-color;
+		font-size:13px;
+		display:inline-block;
+		text-transform: capitalize;
+		margin-bottom: 5px;
+	}
+}
+
+
+
+@include responsive(sm) {}
+
+@include responsive(md) { }
+
+@include responsive(lg) { }
+
+@include responsive(xl) { }

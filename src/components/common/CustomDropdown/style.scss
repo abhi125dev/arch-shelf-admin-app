@@ -1,0 +1,33 @@
+.ui.custom-dropdown.dropdown {
+	&.selection {
+		border-color: $blue;
+		& > .default.text,
+		& > .text,
+		&.visible .text:not(.default) {
+			color: $blue;
+		}
+		&:hover,
+		&:focus,
+		&.active,
+		&.active:hover,
+		&.active .menu,
+		&.active:hover .menu {
+			border-color: $blue;
+		}
+		.icon.angle {
+			cursor: pointer;
+			position: absolute;
+			width: auto;
+			height: auto;
+			line-height: 1.21428571em;
+			top: 0.78571429em;
+			right: .9em;
+			z-index: 3;
+			margin: -0.78571429em;
+			padding: 0.5em;
+			font-size: 18px;
+			transition: opacity 0.1s ease;
+			color: $blue;
+		}
+	}
+}
