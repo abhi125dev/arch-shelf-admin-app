@@ -10,7 +10,7 @@ import {
   Upload,
   Button,
   message,
-  notification,
+  notification, Popconfirm
 } from "antd";
 import {
   UploadOutlined,
@@ -32,7 +32,6 @@ import { PageMetaTags } from "Common";
 import { Link } from "react-router-dom";
 import "./index.scss";
 import Editor from "./../Editor/index";
-import { Popconfirm } from "antd";
 
 const FeedForm = ({
   user,

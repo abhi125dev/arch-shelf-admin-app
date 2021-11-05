@@ -97,15 +97,14 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
               size="large"
               showSearch
               style={{ width: 200 }}
-              placeholder="Search by category"
+              placeholder="Search by status"
               optionFilterProp="children"
               allowClear
               onChange={(value) => setSelected(value)}
             >
-              {options &&
-                options.map((item) => (
-                  <Option value={item._id}>{item.name}</Option>
-                ))}
+              <Option value="open">Open</Option>
+              <Option value="closed">Closed</Option>
+              <Option value="current">Current</Option>
             </Select>
           </div>
           <Button
