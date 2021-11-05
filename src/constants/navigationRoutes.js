@@ -13,7 +13,7 @@ import Competitions from "../components/pages/Competitions";
 import AddCompetitions from "../components/pages/Competitions/AddCompetitions";
 import Breakfast from "../components/pages/Breakfast";
 import AddBreakfast from "../components/pages/Breakfast/AddBreakfast";
-
+import View from '../components/pages/Competitions/view'
 const navigationRoutes = [
   {
     path: "/dashboard",
@@ -92,8 +92,8 @@ const navigationRoutes = [
     component: AddCompetitions,
   },
   {
-    path: "/competitions/:id",
-    component: ViewFeed,
+    path: "/competitions/view/:id",
+    component: View,
   },
   {
     path: "/competitions/:id/edit",

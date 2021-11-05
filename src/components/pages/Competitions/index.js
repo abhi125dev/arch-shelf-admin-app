@@ -5,10 +5,18 @@ import { Link, useHistory } from "react-router-dom";
 import SearchNotFound from "../../../assets/images/empty-search-contact.png";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
+import Avatar from "antd/lib/avatar/avatar";
+import moment from "moment";
+import { getInitials } from "../../../utils";
+import styles from "./index.less";
+import {
+  UserOutlined,
+  CalendarOutlined,
+  MoneyCollectOutlined,
+} from "@ant-design/icons";
 import {
   Pagination,
   Row,
-  Table,
   Input,
   Spin,
   Button,
@@ -16,35 +24,32 @@ import {
   Breadcrumb,
   Select,
 } from "antd";
-import { getFeeds, getOptions } from "../../../services/blog";
+import { getCompetitions } from "../../../services/competition";
 import { getFeedsAction } from "Actions/feedActions";
-import Card from "../../Card";
 import { debounce } from "lodash";
 const Competitions = ({ user, feeds, getFeedsFunc }) => {
   const { Search } = Input;
   const history = useHistory();
-  const [keyword, setKeyword] = useState();
   const [start, setStart] = useState(0);
   const [limit, setLimit] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const { feedsList } = feeds;
   const { Option } = Select;
-  const [options, setOptions] = useState([]);
   const [keywordState, setKeywordState] = useState("");
   const [selected, setSelected] = useState();
+  const [fetchCompetitions, setFetchCompetitions] = useState();
+
   useEffect(() => {
     setLoading(true);
     const body = {
-      type: "competitions",
       start,
       limit,
       selected,
       keywordState,
     };
-    getFeeds({ query: body })
+    getCompetitions({ query: body })
       .then((res) => {
-        getFeedsFunc(res.data);
+        setFetchCompetitions(res.data.competitionsList);
         setLoading(false);
       })
       .catch((err) => {
@@ -62,18 +67,13 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
       });
   }, [user, start, limit, selected, keywordState]);
 
-  useEffect(() => {
-    getOptions({ query: { categoryType: "life" } }).then((res) => {
-      setOptions(res.categories);
-    });
-  }, []);
-
   function handleChangePagination(current) {
     setStart(limit * (current - 1));
     setCurrentPage(current);
   }
   const action = (val) => setKeywordState(val);
   const debounceSearch = debounce(action, 1000);
+
   return (
     <div className="content-panel">
       <PageMetaTags title="Competitions" />
@@ -116,11 +116,124 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
           </Button>
         </div>
       </div>
-      {feedsList && feedsList.feedList && feedsList.feedList.length > 0 ? (
+      {fetchCompetitions && fetchCompetitions.length > 0 ? (
         <Spin tip="Loading..." spinning={loading} size="large">
-          {feedsList &&
-            feedsList.feedList.map((val) => (
-              <Card type="competitions" item={val} />
+          {fetchCompetitions &&
+            fetchCompetitions.map((val) => (
+              <div className="profile-wrapper py-5">
+                <div
+                  style={{ minHeight: "280px", maxHeight: "700px" }}
+                  className="px-10 py-6 mx-auto bg-white rounded-lg shadow-md lg:flex"
+                >
+                  <div className="flex items-center justify-between mr-8 lg:w-5/12 md:w-full sm:w-full mb-2	">
+                    <img
+                      className="w-full rounded-xl"
+                      src={
+                        val && val.media && val.media[0] && val.media[0].url
+                          ? val.media[0].url
+                          : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+                      }
+                      alt="Colors"
+                    />
+                  </div>
+                  <div className="lg:w-9/12 md:w-full sm:w-full">
+                    <div className="flex items-center justify-between">
+                      <span className="font-light text-gray-600">
+                        {val ? moment(val.created_at).format("LL") : "N/A"}
+                      </span>
+                      <div
+                        className="font-bold text-gray-100 rounded-full py-2 px-4"
+                        style={{ backgroundColor: "#16975f" }}
+                      >
+                        {val ? val.status : "N/A"}
+                      </div>
+                    </div>
+                    <div className="mt-2">
+                      <div
+                        onClick={() =>
+                          history.push(`/competitions/view/${val._id}`)
+                        }
+                        className="text-2xl font-bold text-gray-700 hover:underline cursor-pointer"
+                      >
+                        {val ? val.title : "N/A"}
+                      </div>
+                      <div className="flex flex-start">
+                        <p
+                          className={`${styles.truncate_overflow} mt-2 text-gray-600`}
+                        >
+                          {val ? (
+                            <span
+                              className="box"
+                              dangerouslySetInnerHTML={{ __html: val.body }}
+                            ></span>
+                          ) : (
+                            "N/A"
+                          )}
+                        </p>
+                      </div>
+                      <div class="justify-center mt-4">
+                        <div className="flex items-center bg-gray-100">
+                          <CalendarOutlined className="mr-2" /> Start Day:{" "}
+                          {val ? moment(val.startDay).format("LL") : "N/A"} (
+                          {val ? moment(val.startDay).format("h:mm:ss") : "N/A"}
+                          )
+                        </div>
+                        <div className="flex items-center">
+                          <CalendarOutlined className="mr-2" /> Submission Date:{" "}
+                          {val
+                            ? moment(val.submissionDate).format("LL")
+                            : "N/A"}{" "}
+                          (
+                          {val
+                            ? moment(val.submissionDate).format("h:mm:ss")
+                            : "N/A"}
+                          )
+                        </div>
+                        <div className="flex items-center bg-gray-100">
+                          <UserOutlined className="mr-2" /> Organizer:{" "}
+                          {val ? val.organizer : "N/A"}
+                        </div>
+                        <div className="flex items-center">
+                          <MoneyCollectOutlined className="mr-2" /> Price:{" "}
+                          {val ? val.price : "N/A"}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center justify-between mt-4">
+                      <div
+                        className="text-blue-500 hover:underline cursor-pointer	"
+                        onClick={() =>
+                          history.push(`/competitions/view/${val._id}`)
+                        }
+                      >
+                        Read more
+                      </div>
+                      <div>
+                        <div className="flex items-center">
+                          <div className="profile-pic">
+                            <Avatar
+                              style={{ background: "#16975f" }}
+                              src={
+                                val &&
+                                val.user &&
+                                val.user.profile_pic_path &&
+                                val.user.profile_pic_path
+                              }
+                            >
+                              {getInitials(
+                                val ? val.user && val.user.name : "N/A"
+                              )}
+                            </Avatar>
+                          </div>
+                          <div className="font-bold text-gray-700 hover:underline">
+                            {val ? val.user && val.user.name : "N/A"}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           <Row className="p-4" type="flex" justify="end">
             <Pagination
@@ -138,7 +251,7 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
               defaultCurrent={1}
               current={currentPage}
               pageSize={limit}
-              total={feedsList && feedsList.count}
+              total={fetchCompetitions && fetchCompetitions.length}
               onChange={handleChangePagination}
             />
           </Row>

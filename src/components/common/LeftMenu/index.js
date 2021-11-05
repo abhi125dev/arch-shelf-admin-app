@@ -51,7 +51,7 @@ const _LeftMenu = ({
       </div>
       <div className="bottom-logo">
         <img src={ClickLogo} alt="" />
-        <p className="bottom-logo-copyright">&copy; Green Hedge Capital</p>
+        <p className="bottom-logo-copyright">&copy; Arch Shelf</p>
       </div>
     </div>
   );

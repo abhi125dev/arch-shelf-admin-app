@@ -74,6 +74,7 @@ const Breakfast = ({ user, feeds, getFeedsFunc }) => {
   }
   const action = (val) => setKeywordState(val);
   const debounceSearch = debounce(action, 1000);
+
   return (
     <div className="content-panel">
       <PageMetaTags title="Breakfast" />

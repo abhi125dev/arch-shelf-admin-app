@@ -108,7 +108,7 @@ const MainDashboard = ({ user, getDashboardFeedFunc, feeds, type }) => {
                     <p
                       className={`${styles.truncate_overflow} mt-2 text-gray-600`}
                     >
-                      {item ? (
+                      {item && item.feed ? (
                         <span
                           dangerouslySetInnerHTML={{ __html: item.feed.body }}
                         ></span>
