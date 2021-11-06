@@ -280,32 +280,6 @@ const Categories = ({ user, getCategoriesFunc, categories }) => {
                 }}
               />
             </TabPane>
-            <TabPane tab="Competitions" key="competitions">
-              <Table
-                className="no-shadow zcp-fixed-w-table"
-                rowClassName="cursor-pointer"
-                pagination={false}
-                columns={columns}
-                dataSource={categories.categoryList || []}
-                rowKey={(record) => record._id}
-                loading=""
-                locale={{
-                  emptyText: (
-                    <div className="flex items-center justify-center text-center">
-                      <div>
-                        <p className="text-lg">No categories yet!</p>
-                        <img
-                          className="ml-16 "
-                          src={SearchNotFound}
-                          alt="No categories found!"
-                          style={{ height: "100px" }}
-                        />
-                      </div>
-                    </div>
-                  ),
-                }}
-              />
-            </TabPane>
             <TabPane tab="Over Breakfast" key="breakfasts">
               <Table
                 className="no-shadow zcp-fixed-w-table"

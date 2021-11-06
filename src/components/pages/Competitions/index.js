@@ -53,15 +53,13 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
         setLoading(false);
       })
       .catch((err) => {
-        if (err && err.status === 422) {
+        if (err && err.status === 400) {
           notification.error({
-            message: Object.keys(err.data)
-              .map((key) => err.data[key][0])
-              .join(" "),
+            message: "Failed to get competitions",
           });
         } else {
           notification.error({
-            message: "Failed to get feeds",
+            message: `${err.data.error.message}`,
           });
         }
       });

@@ -13,7 +13,8 @@ import Competitions from "../components/pages/Competitions";
 import AddCompetitions from "../components/pages/Competitions/AddCompetitions";
 import Breakfast from "../components/pages/Breakfast";
 import AddBreakfast from "../components/pages/Breakfast/AddBreakfast";
-import View from '../components/pages/Competitions/view'
+import View from "../components/pages/Competitions/view";
+import Query from "../components/pages/Query";
 const navigationRoutes = [
   {
     path: "/dashboard",
@@ -115,10 +116,10 @@ const navigationRoutes = [
     path: "/breakfasts/:id/edit",
     component: AddBreakfast,
   },
-  // {
-  //   path: "/queries",
-  //   component: Query,
-  // },
+  {
+    path: "/queries",
+    component: Query,
+  },
   // {
   //   path: "/founders",
   //   component: Founder,

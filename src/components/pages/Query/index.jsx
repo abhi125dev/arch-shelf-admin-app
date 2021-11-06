@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-    Table,
-    Pagination,
-    Row,
-    notification,
-    Breadcrumb,
-    Spin
-  } from "antd";
+import { Table, Pagination, Row, notification, Breadcrumb, Spin } from "antd";
 import SearchNotFound from "../../../assets/images/empty-search-contact.png";
 import { Link } from "react-router-dom";
 import { PageMetaTags } from "../../common";
@@ -14,12 +7,12 @@ import { getQueries } from "../../../services/query";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
 
-const Query = ({ user, }) => {
+const Query = ({ user }) => {
   const [start, setStart] = useState(0);
   const [limit, setLimit] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [queryResponse, setQueryResponse] = useState()
+  const [queryResponse, setQueryResponse] = useState();
   const [viewSize, setViewSize] = useState(10);
 
   useEffect(() => {
@@ -30,22 +23,21 @@ const Query = ({ user, }) => {
     };
     getQueries({ query: body })
       .then((res) => {
-        setQueryResponse(res.data)
+        setQueryResponse(res.data);
         setLoading(false);
       })
       .catch((err) => {
         if (err && err.status === 400) {
-            notification.error({
-              message: "Failed to get queries",
-            });
-          } else {
-            notification.error({
-              message: `${err.data.error.message}`,
-            });
-          }
+          notification.error({
+            message: "Failed to get queries",
+          });
+        } else {
+          notification.error({
+            message: `${err.data.error.message}`,
+          });
+        }
       });
   }, [user, start, limit]);
-
 
   function handleChangePagination(current) {
     setStart(limit * (current - 1));
@@ -71,9 +63,7 @@ const Query = ({ user, }) => {
       title: "Email",
       dataIndex: "email",
       key: "email",
-      render: (data) => (
-        <div>{data ? data : "N/A"}</div>
-      ),
+      render: (data) => <div>{data ? data : "N/A"}</div>,
     },
     {
       title: "Phone number",
@@ -82,13 +72,13 @@ const Query = ({ user, }) => {
       render: (data) => <div>{data ? data : "N/A"}</div>,
     },
     {
-        title: "Message",
-        dataIndex: "message",
-        key: "message",
-        render: (data) => <div>{data ? data : "N/A"}</div>,
-      },
+      title: "Message",
+      dataIndex: "message",
+      key: "message",
+      render: (data) => <div>{data ? data : "N/A"}</div>,
+    },
   ];
- console.log(`queryResponse`, queryResponse)
+
   return (
     <div className="content-panel">
       <PageMetaTags title="Query" />
@@ -102,31 +92,33 @@ const Query = ({ user, }) => {
         <span className="page-heading">Queries</span>
       </div>
 
-       {queryResponse && queryResponse.questionsList && queryResponse.questionsList.length > 0 ? (
+      {queryResponse &&
+      queryResponse.questionsList &&
+      queryResponse.questionsList.length > 0 ? (
         <Spin tip="Loading..." spinning={loading} size="large">
-            <Table
-                className="no-shadow zcp-fixed-w-table"
-                pagination={false}
-                columns={columns}
-                dataSource={queryResponse.questionsList || []}
-                rowKey={(record) => record._id}
-                loading=""
-                locale={{
-                  emptyText: (
-                    <div className="flex items-center justify-center text-center">
-                      <div>
-                        <p className="text-lg">No categories yet!</p>
-                        <img
-                          className="ml-16 "
-                          src={SearchNotFound}
-                          alt="No categories found!"
-                          style={{ height: "100px" }}
-                        />
-                      </div>
-                    </div>
-                  ),
-                }}
-              />            
+          <Table
+            className="no-shadow zcp-fixed-w-table"
+            pagination={false}
+            columns={columns}
+            dataSource={queryResponse.questionsList || []}
+            rowKey={(record) => record._id}
+            loading=""
+            locale={{
+              emptyText: (
+                <div className="flex items-center justify-center text-center">
+                  <div>
+                    <p className="text-lg">No categories yet!</p>
+                    <img
+                      className="ml-16 "
+                      src={SearchNotFound}
+                      alt="No categories found!"
+                      style={{ height: "100px" }}
+                    />
+                  </div>
+                </div>
+              ),
+            }}
+          />
           <Row className="p-4" type="flex" justify="end">
             <Pagination
               key={`page-${currentPage}`}
@@ -158,7 +150,7 @@ const Query = ({ user, }) => {
             style={{ height: "100px" }}
           />
         </div>
-      )} 
+      )}
     </div>
   );
 };

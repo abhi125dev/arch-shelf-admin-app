@@ -7,6 +7,7 @@ const student = [
   { name: "Courses", icon: "fa-book", path: "/courses" },
   { name: "Competitions", icon: "fa-life-ring", path: "/competitions" },
   { name: "Over Breakfast", icon: "fa-snowflake", path: "/breakfasts" },
+  { name: "Query", icon: "fa-comment-dots", path: "/queries" },
 ];
 
 export { student };
