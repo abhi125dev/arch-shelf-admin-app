@@ -24,6 +24,7 @@ const Card = ({ item, type }) => {
                   : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
               }
               alt="Colors"
+              style={{ width: "100%", height: "240px" }}
             />
           </div>
           <div className="lg:w-9/12 md:w-full sm:w-full">
@@ -41,12 +42,16 @@ const Card = ({ item, type }) => {
             <div className="mt-2">
               <div
                 onClick={() => history.push(`/${type}/${item._id}`)}
-                className="text-2xl font-bold text-gray-700 hover:underline cursor-pointer"
+                className="text-2xl font-bold text-gray-700 hover:underline cursor-pointer truncate"
+                style={{ maxWidth: "600px" }}
               >
                 {item ? item.title : "N/A"}
               </div>
               <div className="flex flex-start">
-                <p className={`${styles.truncate_overflow} mt-2 text-gray-600`}>
+                <p
+                  className={`${styles.truncate_overflow} mt-2 text-gray-600`}
+                  style={{ height: "100px", overflow: "hidden" }}
+                >
                   {item ? (
                     <span
                       className="box"

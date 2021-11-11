@@ -10,7 +10,8 @@ import {
   Upload,
   Button,
   message,
-  notification, Popconfirm
+  notification,
+  Popconfirm,
 } from "antd";
 import {
   UploadOutlined,
@@ -180,7 +181,7 @@ const FeedForm = ({
               category: values.blogCategory,
               shortDescription: values.shortDescription,
               body: editorBody,
-              url: values.url,
+              // url: values.url,
               type: pageType,
             };
             const bodyFormData = new FormData();
@@ -188,7 +189,7 @@ const FeedForm = ({
             bodyFormData.append("category", body.category);
             bodyFormData.append("shortDescription", body.shortDescription);
             bodyFormData.append("body", editorBody);
-            bodyFormData.append("url", body.url);
+            // bodyFormData.append("url", body.url);
             bodyFormData.append("type", pageType);
             bodyFormData.append("media", contentList);
             if (taskId) {
@@ -261,7 +262,6 @@ const FeedForm = ({
             {Array.isArray(categories.categoryList) &&
               categories.categoryList.length > 0 && (
                 <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                  {console.log(`categories`, categories)}
                   <Form.Item
                     name="blogCategory"
                     label={
@@ -294,7 +294,7 @@ const FeedForm = ({
                 <Input size="large" placeholder="Enter short description" />
               </Form.Item>
             </Col>
-            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+            {/* <Col xs={24} sm={24} md={12} lg={12} xl={12}>
               <Form.Item
                 name="url"
                 label={<p className="font-medium text-gray-800">Link</p>}
@@ -302,7 +302,7 @@ const FeedForm = ({
               >
                 <Input size="large" placeholder="Enter url" />
               </Form.Item>
-            </Col>
+            </Col> */}
             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
               <div className="font-medium text-gray-800 mb-2">Attachment</div>
               <div>

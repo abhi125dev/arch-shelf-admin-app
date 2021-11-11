@@ -280,7 +280,7 @@ const Categories = ({ user, getCategoriesFunc, categories }) => {
                 }}
               />
             </TabPane>
-            <TabPane tab="Over Breakfast" key="breakfasts">
+            {/* <TabPane tab="Over Breakfast" key="breakfasts">
               <Table
                 className="no-shadow zcp-fixed-w-table"
                 rowClassName="cursor-pointer"
@@ -305,7 +305,7 @@ const Categories = ({ user, getCategoriesFunc, categories }) => {
                   ),
                 }}
               />
-            </TabPane>
+            </TabPane> */}
           </Tabs>
         </div>
       </div>

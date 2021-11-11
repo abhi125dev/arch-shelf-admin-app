@@ -90,7 +90,7 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
           allowClear
         />
         <div className="flex justify-end space-x-4">
-          <div>
+          {/* <div>
             <Select
               size="large"
               showSearch
@@ -104,7 +104,7 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
               <Option value="closed">Closed</Option>
               <Option value="current">Current</Option>
             </Select>
-          </div>
+          </div> */}
           <Button
             size="large"
             type="primary"
@@ -132,6 +132,7 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
                           : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
                       }
                       alt="Colors"
+                      style={{ width: "100%", height: "240px" }}
                     />
                   </div>
                   <div className="lg:w-9/12 md:w-full sm:w-full">
@@ -151,13 +152,15 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
                         onClick={() =>
                           history.push(`/competitions/view/${val._id}`)
                         }
-                        className="text-2xl font-bold text-gray-700 hover:underline cursor-pointer"
+                        className="text-2xl font-bold text-gray-700 hover:underline cursor-pointer truncate"
+                        style={{ maxWidth: "600px" }}
                       >
                         {val ? val.title : "N/A"}
                       </div>
                       <div className="flex flex-start">
                         <p
                           className={`${styles.truncate_overflow} mt-2 text-gray-600`}
+                          style={{ height: "100px", overflow: "hidden" }}
                         >
                           {val ? (
                             <span

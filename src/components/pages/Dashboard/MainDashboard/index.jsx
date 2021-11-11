@@ -100,13 +100,15 @@ const MainDashboard = ({ user, getDashboardFeedFunc, feeds, type }) => {
                         onClick={() =>
                           history.push(`/${item.feed.type}/${item.feed._id}`)
                         }
-                        className="text-2xl font-bold text-gray-700 hover:underline cursor-pointer"
+                        className="text-2xl font-bold text-gray-700 hover:underline cursor-pointer truncate"
+                        style={{ maxWidth: "600px" }}
                       >
                         {item ? item.feed && item.feed.title : "N/A"}
                       </div>
                     </div>
                     <p
                       className={`${styles.truncate_overflow} mt-2 text-gray-600`}
+                      style={{ height: "100px", overflow: "hidden" }}
                     >
                       {item && item.feed ? (
                         <span
@@ -117,7 +119,7 @@ const MainDashboard = ({ user, getDashboardFeedFunc, feeds, type }) => {
                       )}
                     </p>
                     <div
-                      className="text-blue-500 hover:underline cursor-pointer	"
+                      className="text-blue-500 hover:underline cursor-pointer	mb-4"
                       onClick={() =>
                         history.push(`/${item.feed.type}/${item.feed._id}`)
                       }

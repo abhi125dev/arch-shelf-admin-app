@@ -79,7 +79,10 @@ const ViewBlog = ({ user, getFeedFunc, feeds }) => {
           </Breadcrumb.Item>
         </Breadcrumb>
         <div className="flex justify-between">
-          <h1 className="page-heading">
+          <h1
+            className="page-heading truncate"
+            style={{ maxWidth: "700px", lineHeight: "40px" }}
+          >
             {feeds.feedDetail ? `${feeds.feedDetail.title}` : "N/A"}
           </h1>
           <div>

@@ -93,8 +93,8 @@ export const categoryTypes = () => {
     { id: "resources", value: "Resource" },
     { id: "projects", value: "Project" },
     { id: "courses", value: "Course" },
-    { id: "competitions", value: "Competition" },
-    { id: "breakfasts", value: "Over Breakfast" },
+    // { id: "competitions", value: "Competition" },
+    // { id: "breakfasts", value: "Over Breakfast" },
   ];
 };
 
