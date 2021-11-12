@@ -94,6 +94,7 @@
     "react-nestable": "^1.1.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
+    "react-slideshow-image": "^3.6.0",
     "react-toast-notifications": "^2.4.0",
     "react-virtualized": "^9.21.2",
     "regenerator-runtime": "^0.13.3",

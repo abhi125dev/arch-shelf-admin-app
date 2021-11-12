@@ -12,6 +12,9 @@ import {
   getComments,
   deleteComment,
 } from "../../../services/blog";
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+import "./index.less";
 import { getCommentsAction } from "Actions/commentActions";
 
 const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
@@ -99,7 +102,35 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
   return (
     <>
       <div className="mb-2">
-        <img
+        <Slide easing="ease">
+          <div className="each-slide">
+            <div
+              style={{
+                backgroundImage: `url(${
+                  item && item.media && item.media.url
+                    ? item.media.url
+                    : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+                })`,
+              }}
+            >
+              <span>Slide 1</span>
+            </div>
+          </div>
+          <div className="each-slide">
+            <div
+              style={{
+                backgroundImage: `url(${
+                  item && item.media && item.media.url
+                    ? item.media.url
+                    : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+                })`,
+              }}
+            >
+              <span>Slide 2</span>
+            </div>
+          </div>
+        </Slide>
+        {/* <img
           className="w-full rounded-xl"
           src={
             item && item.media && item.media.url
@@ -107,7 +138,7 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
               : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
           }
           alt="Colors"
-        />
+        /> */}
       </div>
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center ">
