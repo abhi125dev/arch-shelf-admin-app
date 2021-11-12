@@ -34,5 +34,5 @@ export const deleteComment = ({ pathParams }) =>
 export const getOptions = ({ query }) =>
   callApi({ uriEndPoint: blog.getOptions.v1, query });
 
-export const deleteFeedImage = ({ pathParams }) =>
-  callApi({ uriEndPoint: blog.deleteFeedImage.v1, pathParams });
+export const deleteFeedImage = ({ pathParams, body }) =>
+  callApi({ uriEndPoint: blog.deleteFeedImage.v1, pathParams, body });

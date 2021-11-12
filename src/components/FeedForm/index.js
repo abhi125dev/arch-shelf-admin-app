@@ -89,8 +89,8 @@ const FeedForm = ({
       })
         .then((res) => {
           getFeedFunc(res.data);
-          setFileList(res.data.media.map((item) => item));
-          setPreviewImage(res.data.media.map((item) => item));
+          setFileList(res.data.media);
+          setPreviewImage(res.data.media);
         })
         .catch((err) => {
           if (err && err.status === 422) {
@@ -110,15 +110,21 @@ const FeedForm = ({
 
   const handlePreview = (item) => {
     setPreviewVisible(true);
-    setPreviewImage(URL.createObjectURL(item));
+    if (feedId) {
+      setPreviewImage(item);
+    } else setPreviewImage(URL.createObjectURL(item));
   };
 
   const handleCancel = () => {
     setPreviewVisible(false);
   };
 
-  const deleteImage = () => {
-    deleteFeedImage({ pathParams: { id: feedId } });
+  const deleteImage = (url) => {
+    deleteFeedImage({ pathParams: { id: feedId }, body: { url } }).then(
+      (res) => {
+        setFileList(res.data.media);
+      }
+    );
   };
 
   // file convert to base 64
@@ -148,7 +154,7 @@ const FeedForm = ({
       });
     }
   }, [feedId, user, feeds, form]);
-  console.log(`contentList`, contentList);
+
   return (
     <div className="profile-wrapper">
       <PageMetaTags title={feedId ? `Edit ${pageName}` : `Add ${pageName}`} />
@@ -188,6 +194,7 @@ const FeedForm = ({
             bodyFormData.append("body", editorBody);
             // bodyFormData.append("url", body.url);
             bodyFormData.append("type", pageType);
+            // bodyFormData.append("media", contentList);
             contentList.map((item) => bodyFormData.append(item.name, item));
             if (feedId) {
               updateFeed({ body: bodyFormData, pathParams: { id: feedId } })
@@ -307,28 +314,6 @@ const FeedForm = ({
                   <div className="wrapper" style={{ width: "20%" }}>
                     <div className="delete">
                       <div className="w-8 h-8 rounded-full flex justify-center space-x-4 mb-2">
-                        {/* <Popconfirm
-                          placement="right"
-                          title="Are you sure, you want to delete"
-                          onConfirm={() => {
-                            confirm(fileList);
-                            deleteImage();
-                          }}
-                          okText="Yes"
-                          cancelText="No"
-                        >
-                          <Button
-                            icon={<DeleteOutlined />}
-                            shape="circle"
-                            style={{
-                              backgroundColor: "#16975f",
-                              color: "white",
-                              display: "flex",
-                              flexDirection: "column",
-                              alignItems: "stretch",
-                            }}
-                          ></Button>
-                        </Popconfirm> */}
                         {feedId && (
                           <Upload
                             accept=".jpg, .jpeg, .png"
@@ -360,8 +345,9 @@ const FeedForm = ({
                             fileList={[]}
                           >
                             {/* file upload button  */}
-                            <Button
-                              icon={<UploadOutlined />}
+                            {/* <Button
+                              icon={<EditOutlined />}
+                              onSelect={() => deleteImage()}
                               shape="circle"
                               style={{
                                 backgroundColor: "#16975f",
@@ -370,7 +356,7 @@ const FeedForm = ({
                                 flexDirection: "column",
                                 alignItems: "stretch",
                               }}
-                            />
+                            ></Button> */}
                           </Upload>
                         )}
                       </div>
@@ -409,38 +395,77 @@ const FeedForm = ({
                           </div>
                         </div>
                         <div className="flex">
-                          <div
-                            className="w-8 h-8 rounded-full flex justify-center flex-col"
-                            onClick={() => handlePreview(contentList[index])}
-                            style={{
-                              backgroundColor: "#1890ff",
-                              color: "white",
-                              cursor: "pointer",
-                              marginRight: 10,
-                            }}
-                          >
-                            <EyeOutlined />
-                          </div>
-                          <Popconfirm
-                            placement="right"
-                            title="Are you sure, you want to delete"
-                            onConfirm={() => {
-                              confirm(index);
-                              deleteImage();
-                            }}
-                          >
-                            <Button
-                              icon={<DeleteOutlined />}
-                              shape="circle"
-                              style={{
-                                backgroundColor: "#16975f",
-                                color: "white",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "stretch",
-                              }}
-                            ></Button>
-                          </Popconfirm>
+                          {feedId ? (
+                            <div className="flex">
+                              <div
+                                className="w-8 h-8 rounded-full flex justify-center flex-col"
+                                onClick={() => handlePreview(item.url)}
+                                style={{
+                                  backgroundColor: "#1890ff",
+                                  color: "white",
+                                  cursor: "pointer",
+                                  marginRight: 10,
+                                }}
+                              >
+                                <EyeOutlined />
+                              </div>
+                              <Popconfirm
+                                placement="right"
+                                title="Are you sure, you want to delete"
+                                onConfirm={() => {
+                                  deleteImage(item.url);
+                                }}
+                              >
+                                <Button
+                                  icon={<DeleteOutlined />}
+                                  shape="circle"
+                                  style={{
+                                    backgroundColor: "#16975f",
+                                    color: "white",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "stretch",
+                                  }}
+                                ></Button>
+                              </Popconfirm>
+                            </div>
+                          ) : (
+                            <div className="flex">
+                              <div
+                                className="w-8 h-8 rounded-full flex justify-center flex-col"
+                                onClick={() =>
+                                  handlePreview(contentList[index])
+                                }
+                                style={{
+                                  backgroundColor: "#1890ff",
+                                  color: "white",
+                                  cursor: "pointer",
+                                  marginRight: 10,
+                                }}
+                              >
+                                <EyeOutlined />
+                              </div>
+                              <Popconfirm
+                                placement="right"
+                                title="Are you sure, you want to delete"
+                                onConfirm={() => {
+                                  confirm(index);
+                                }}
+                              >
+                                <Button
+                                  icon={<DeleteOutlined />}
+                                  shape="circle"
+                                  style={{
+                                    backgroundColor: "#16975f",
+                                    color: "white",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    alignItems: "stretch",
+                                  }}
+                                ></Button>
+                              </Popconfirm>
+                            </div>
+                          )}
                         </div>
                       </div>
                     ))
