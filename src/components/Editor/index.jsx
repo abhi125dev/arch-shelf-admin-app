@@ -5,10 +5,6 @@ import CKEditor from "@ckeditor/ckeditor5-react";
 import CKEditorConfig from "../../config/appConfig";
 
 const Editor = ({ taskId, feedDetail, editorBody, setEditorBody }) => {
-  // useEffect(()=> {
-
-  // })
-
   return (
     <div className="text-gray-800 rounded">
       <CKEditor

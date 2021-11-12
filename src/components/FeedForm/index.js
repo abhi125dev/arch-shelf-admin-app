@@ -12,23 +12,24 @@ import {
   message,
   notification,
   Popconfirm,
+  Tooltip,
 } from "antd";
 import {
   UploadOutlined,
   DeleteOutlined,
+  EyeOutlined,
   EditOutlined,
 } from "@ant-design/icons";
 import { addFeed } from "../../services/blog";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
 import { useHistory, useParams, useLocation } from "react-router-dom";
-
 import { getCategoriesAction } from "Actions/categoryActions";
 import { getCategories } from "../../services/category";
 import { getLinks } from "../../utils/index";
 import { getFeed, updateFeed, deleteFeedImage } from "../../services/blog";
 import { getFeedAction } from "Actions/feedActions";
-import { Breadcrumb } from "antd";
+import { Breadcrumb, Modal } from "antd";
 import { PageMetaTags } from "Common";
 import { Link } from "react-router-dom";
 import "./index.scss";
@@ -51,11 +52,11 @@ const FeedForm = ({
   const [getLoading, setGetLoading] = useState(false);
   const [editorBody, setEditorBody] = useState("");
   const [previewImage, setPreviewImage] = useState();
-  const [contentList, setContentList] = useState();
-  const [fileList, setFileList] = useState();
-  const [hideUpload, setHideUpload] = useState(false);
+  const [contentList, setContentList] = useState([]);
+  const [fileList, setFileList] = useState([]);
+  const [previewVisible, setPreviewVisible] = useState();
 
-  const taskId = useParams().id;
+  const feedId = useParams().id;
 
   useEffect(() => {
     const body = {
@@ -82,15 +83,14 @@ const FeedForm = ({
   }, [user]);
 
   useEffect(() => {
-    if (taskId) {
+    if (feedId) {
       getFeed({
-        pathParams: { id: taskId },
+        pathParams: { id: feedId },
       })
         .then((res) => {
           getFeedFunc(res.data);
-          setFileList(res.data.media.url);
-          setPreviewImage(res.data.media.url);
-          setHideUpload(true);
+          setFileList(res.data.media.map((item) => item));
+          setPreviewImage(res.data.media.map((item) => item));
         })
         .catch((err) => {
           if (err && err.status === 422) {
@@ -106,23 +106,20 @@ const FeedForm = ({
           }
         });
     }
-  }, [user, taskId]);
+  }, [user, feedId]);
 
-  // to open popup and review the image
-  const handlePreview = (fileList) => {
-    setPreviewImage(URL.createObjectURL(fileList));
+  const handlePreview = (item) => {
+    setPreviewVisible(true);
+    setPreviewImage(URL.createObjectURL(item));
+  };
+
+  const handleCancel = () => {
+    setPreviewVisible(false);
   };
 
   const deleteImage = () => {
-    deleteFeedImage({ pathParams: { id: taskId } });
+    deleteFeedImage({ pathParams: { id: feedId } });
   };
-
-  useEffect(() => {
-    if (contentList) {
-      handlePreview(contentList);
-      setHideUpload(true);
-    }
-  }, [contentList]);
 
   // file convert to base 64
   const toBase64 = (encodedFile) =>
@@ -134,13 +131,13 @@ const FeedForm = ({
     });
 
   function confirm(rec) {
+    setFileList(fileList.filter((files, index) => index !== rec));
+    setContentList(contentList.filter((files, index) => index !== rec));
     message.success(`Image deleted`);
-    setFileList("");
-    setHideUpload(false);
   }
 
   useEffect(() => {
-    if (feeds && feeds.feedDetail && taskId === feeds.feedDetail._id) {
+    if (feeds && feeds.feedDetail && feedId === feeds.feedDetail._id) {
       const values = feeds.feedDetail;
       setEditorBody(values.body);
       form.setFieldsValue({
@@ -150,11 +147,11 @@ const FeedForm = ({
         shortDescription: values ? values.shortDescription : "",
       });
     }
-  }, [taskId, user, feeds, form]);
-
+  }, [feedId, user, feeds, form]);
+  console.log(`contentList`, contentList);
   return (
     <div className="profile-wrapper">
-      <PageMetaTags title={taskId ? `Edit ${pageName}` : `Add ${pageName}`} />
+      <PageMetaTags title={feedId ? `Edit ${pageName}` : `Add ${pageName}`} />
       <Breadcrumb style={{ marginBottom: 20 }}>
         <Breadcrumb.Item>
           <Link to="/dashboard">Home</Link>
@@ -163,11 +160,11 @@ const FeedForm = ({
           <Link to={allPageUrl}>{pageName}</Link>
         </Breadcrumb.Item>
         <Breadcrumb.Item>
-          {taskId ? `Edit ${pageName}` : `Add ${pageName}`}
+          {feedId ? `Edit ${pageName}` : `Add ${pageName}`}
         </Breadcrumb.Item>
       </Breadcrumb>
       <h1 className="page-heading">
-        {taskId ? `Edit ${pageName}` : `Add ${pageName}`}
+        {feedId ? `Edit ${pageName}` : `Add ${pageName}`}
       </h1>
       <Skeleton loading={getLoading}>
         <Form
@@ -191,9 +188,9 @@ const FeedForm = ({
             bodyFormData.append("body", editorBody);
             // bodyFormData.append("url", body.url);
             bodyFormData.append("type", pageType);
-            bodyFormData.append("media", contentList);
-            if (taskId) {
-              updateFeed({ body: bodyFormData, pathParams: { id: taskId } })
+            contentList.map((item) => bodyFormData.append(item.name, item));
+            if (feedId) {
+              updateFeed({ body: bodyFormData, pathParams: { id: feedId } })
                 .then((res) => {
                   setLoading(false);
                   notification.success({
@@ -307,24 +304,10 @@ const FeedForm = ({
               <div className="font-medium text-gray-800 mb-2">Attachment</div>
               <div>
                 {fileList ? (
-                  <div className="wrapper">
-                    {previewImage && (
-                      <img
-                        alt="previewImage"
-                        src={previewImage}
-                        className="mb-2"
-                      />
-                    )}
+                  <div className="wrapper" style={{ width: "20%" }}>
                     <div className="delete">
-                      <div
-                        className="w-8 h-8 rounded-full flex justify-center space-x-4 mb-2"
-                        // style={{
-                        //   backgroundColor: "red",
-                        //   color: "white",
-                        //   cursor: "pointer",
-                        // }}
-                      >
-                        <Popconfirm
+                      <div className="w-8 h-8 rounded-full flex justify-center space-x-4 mb-2">
+                        {/* <Popconfirm
                           placement="right"
                           title="Are you sure, you want to delete"
                           onConfirm={() => {
@@ -335,10 +318,6 @@ const FeedForm = ({
                           cancelText="No"
                         >
                           <Button
-                            // onClick={() => {
-                            //   confirm(fileList);
-                            //   deleteImage();
-                            // }}
                             icon={<DeleteOutlined />}
                             shape="circle"
                             style={{
@@ -349,23 +328,31 @@ const FeedForm = ({
                               alignItems: "stretch",
                             }}
                           ></Button>
-                        </Popconfirm>
-                        {taskId && (
+                        </Popconfirm> */}
+                        {feedId && (
                           <Upload
                             accept=".jpg, .jpeg, .png"
-                            // convert file size, generate id, convert file to base64, await & promise
+                            type="drag"
+                            multiple
+                            style={{ border: 0 }}
+                            // convert file size, generate feedId, convert file to base64, await & promise
                             beforeUpload={async (uploadContent) => {
                               await toBase64(uploadContent)
                                 .then((response) => {
                                   const obj = {
                                     document: response,
-                                    id: Math.floor(
-                                      Math.random() * (999 - 0) + 0
-                                    ),
                                     name: uploadContent.name,
                                   };
-                                  setFileList(obj, fileList);
-                                  setContentList(uploadContent, contentList);
+                                  // setFileList(obj, fileList);
+                                  // setContentList(uploadContent, contentList);
+                                  setFileList((prevState) => [
+                                    ...prevState,
+                                    obj,
+                                  ]);
+                                  setContentList((prevState) => [
+                                    ...prevState,
+                                    uploadContent,
+                                  ]);
                                 })
                                 .catch(() => {});
                               return false;
@@ -374,8 +361,7 @@ const FeedForm = ({
                           >
                             {/* file upload button  */}
                             <Button
-                              icon={<EditOutlined />}
-                              // onSelect={() => deleteImage()}
+                              icon={<UploadOutlined />}
                               shape="circle"
                               style={{
                                 backgroundColor: "#16975f",
@@ -384,7 +370,7 @@ const FeedForm = ({
                                 flexDirection: "column",
                                 alignItems: "stretch",
                               }}
-                            ></Button>
+                            />
                           </Upload>
                         )}
                       </div>
@@ -394,29 +380,95 @@ const FeedForm = ({
                   ""
                 )}
               </div>
+              <Modal
+                visible={previewVisible}
+                footer={null}
+                onCancel={handleCancel}
+              >
+                <iframe
+                  title="model"
+                  src={previewImage}
+                  style={{ width: "100%", height: 500 }}
+                  // type="application/pdf"
+                />
+              </Modal>
+              <div className="">
+                {fileList.length > 0
+                  ? fileList.map((item, index) => (
+                      <div
+                        key={index}
+                        className="flex justify-between p-2 border-b"
+                      >
+                        <div className="flex">
+                          <div>
+                            <Tooltip placement="topLeft" title={item.name}>
+                              <div className="font-normal text-sm font-medium text-gray-500 lg:w-full w-40 truncate">
+                                {item.name}
+                              </div>
+                            </Tooltip>
+                          </div>
+                        </div>
+                        <div className="flex">
+                          <div
+                            className="w-8 h-8 rounded-full flex justify-center flex-col"
+                            onClick={() => handlePreview(contentList[index])}
+                            style={{
+                              backgroundColor: "#1890ff",
+                              color: "white",
+                              cursor: "pointer",
+                              marginRight: 10,
+                            }}
+                          >
+                            <EyeOutlined />
+                          </div>
+                          <Popconfirm
+                            placement="right"
+                            title="Are you sure, you want to delete"
+                            onConfirm={() => {
+                              confirm(index);
+                              deleteImage();
+                            }}
+                          >
+                            <Button
+                              icon={<DeleteOutlined />}
+                              shape="circle"
+                              style={{
+                                backgroundColor: "#16975f",
+                                color: "white",
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: "stretch",
+                              }}
+                            ></Button>
+                          </Popconfirm>
+                        </div>
+                      </div>
+                    ))
+                  : ""}
+              </div>
               <div
-                className={
-                  hideUpload
-                    ? `hidden`
-                    : `p-8 rounded-md border-dashed border-2 flex justify-around items-center flex-col md:border-gray-100 border-opacity-75 mb-8`
-                }
+                className={`p-8 rounded-md border-dashed border-2 flex justify-around items-center flex-col md:border-gray-100 border-opacity-75 mb-8`}
               >
                 <Upload
                   accept=".jpg, .jpeg, .png"
                   type="drag"
+                  multiple
                   style={{ border: 0 }}
-                  // convert file size, generate taskId, convert file to base64, await & promise
+                  // convert file size, generate feedId, convert file to base64, await & promise
                   beforeUpload={async (uploadContent) => {
                     await toBase64(uploadContent)
                       .then((response) => {
                         const obj = {
                           document: response,
-                          taskId: Math.floor(Math.random() * (999 - 0) + 0),
                           name: uploadContent.name,
-                          // size: fileSizeConvertor(uploadContent.size),
                         };
-                        setFileList(obj, fileList);
-                        setContentList(uploadContent, contentList);
+                        // setFileList(obj, fileList);
+                        // setContentList(uploadContent, contentList);
+                        setFileList((prevState) => [...prevState, obj]);
+                        setContentList((prevState) => [
+                          ...prevState,
+                          uploadContent,
+                        ]);
                       })
                       .catch(() => {});
                     return false;
@@ -443,13 +495,12 @@ const FeedForm = ({
           <div className="mt-8">
             <p className="font-medium text-gray-800">Description</p>
             <Editor
-              taskId={taskId}
+              feedId={feedId}
               setEditorBody={setEditorBody}
               feedDetail={feeds && feeds.feedDetail && feeds.feedDetail.body}
               editorBody={editorBody}
             />
           </div>
-
           <div className="flex justify-end mt-4">
             <Button
               size="large"
@@ -457,7 +508,7 @@ const FeedForm = ({
               htmlType="submit"
               disabled={loading}
             >
-              {taskId
+              {feedId
                 ? `${loading ? "Updating..." : "Update"}`
                 : `${loading ? "Adding..." : "Add"}`}
             </Button>
