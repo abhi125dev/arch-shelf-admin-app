@@ -19,8 +19,8 @@ const Card = ({ item, type }) => {
             <img
               className="w-full rounded-xl"
               src={
-                item && item.media && item.media.url
-                  ? item.media.url
+                item && item.media && item.media[0].url
+                  ? item.media[0].url
                   : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
               }
               alt="Colors"
