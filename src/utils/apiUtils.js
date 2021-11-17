@@ -14,8 +14,8 @@ export const hostname = () => {
     default:
       hostUrl =
         // process.env.REACT_APP_API_URL ||
-        // "https://api.greenhedgeconnect.com";
-        "http://localhost:5000"
+        "https://api.archshelf.com";
+      // "http://localhost:5000"
       break;
   }
   return hostUrl;

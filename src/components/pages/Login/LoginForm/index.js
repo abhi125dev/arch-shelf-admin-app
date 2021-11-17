@@ -6,6 +6,7 @@ import { PageMetaTags } from "Common";
 import { Link, useHistory } from "react-router-dom";
 import { Col, Form, Input, notification, Row, Button } from "antd";
 import { loginUser } from "../../../../services/user";
+import "./index.less";
 
 const LoginForm = ({ signInSuccess }) => {
   const [loading, setLoading] = useState(false);
@@ -24,11 +25,14 @@ const LoginForm = ({ signInSuccess }) => {
               <div className="login-holder">
                 <div className="login-inner text-center">
                   <figure>
-                    <img
+                    {/* <img
                       className="m-auto"
                       src={require("Assets/images/logo-small.png")}
                       alt="logo"
-                    />
+                    /> */}
+                    <div class="text-block-8">
+                      <span class="text-span">ARCH</span> SHELF
+                    </div>
                   </figure>
                   <h1 className="page-heading">Login</h1>
                   <Form
