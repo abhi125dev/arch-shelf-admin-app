@@ -107,8 +107,6 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
     setCurrentPage(current);
   }
 
-  console.log(`item.media`, item.media);
-
   return (
     <>
       <div className="mb-2">
@@ -121,7 +119,7 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
                   preview={false}
                   width={1000}
                   src={img.url}
-                  alt="https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+                  alt="image not found"
                 />
               </div>
             ))}
