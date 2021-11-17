@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { UserOutlined, FieldTimeOutlined } from "@ant-design/icons";
 import moment from "moment";
-import { notification, Button, Tooltip, Row, Pagination } from "antd";
+import {
+  notification,
+  Button,
+  Image,
+  Tooltip,
+  Row,
+  Pagination,
+  Carousel,
+} from "antd";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
 import { DeleteOutlined } from "@ant-design/icons";
@@ -99,37 +107,26 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
     setCurrentPage(current);
   }
 
+  console.log(`item.media`, item.media);
+
   return (
     <>
       <div className="mb-2">
-        <Slide easing="ease">
-          <div className="each-slide">
-            <div
-              style={{
-                backgroundImage: `url(${
-                  item && item.media && item.media[0].url
-                    ? item.media[0].url
-                    : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
-                })`,
-              }}
-            >
-              <span>Slide 1</span>
-            </div>
-          </div>
-          <div className="each-slide">
-            <div
-              style={{
-                backgroundImage: `url(${
-                  item && item.media && item.media.url
-                    ? item.media[1].url
-                    : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
-                })`,
-              }}
-            >
-              <span>Slide 2</span>
-            </div>
-          </div>
-        </Slide>
+        <Carousel autoplay>
+          {item &&
+            item.media &&
+            item.media.map((img) => (
+              <div>
+                <Image
+                  preview={false}
+                  width={1000}
+                  src={img.url}
+                  alt="https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
+                />
+              </div>
+            ))}
+        </Carousel>
+        ,
         {/* <img
           className="w-full rounded-xl"
           src={

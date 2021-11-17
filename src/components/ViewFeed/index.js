@@ -13,7 +13,6 @@ import { getLinks } from "../../utils/index";
 const ViewBlog = ({ user, getFeedFunc, feeds }) => {
   const { id } = useParams();
   const history = useHistory();
-
   useEffect(() => {
     getFeed({
       pathParams: { id },
@@ -78,7 +77,7 @@ const ViewBlog = ({ user, getFeedFunc, feeds }) => {
             {feeds.feedDetail ? `${feeds.feedDetail.title}` : "N/A"}
           </Breadcrumb.Item>
         </Breadcrumb>
-        <div className="flex justify-between">
+        <div className="flex justify-between pr-72">
           <h1
             className="page-heading truncate"
             style={{ maxWidth: "700px", lineHeight: "40px" }}
@@ -103,7 +102,7 @@ const ViewBlog = ({ user, getFeedFunc, feeds }) => {
             </Popconfirm>
           </div>
         </div>
-        <div className="profile-wrapper border p-8 bg-white">
+        <div className="profile-wrapper border p-8 bg-white mr-72">
           <CardDetails
             item={feeds.feedDetail}
             backLinks={
