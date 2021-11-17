@@ -20,9 +20,6 @@ import {
   getComments,
   deleteComment,
 } from "../../../services/blog";
-import { Slide } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
-import "./index.less";
 import { getCommentsAction } from "Actions/commentActions";
 
 const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
