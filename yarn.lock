@@ -3244,6 +3244,11 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
+"@tweenjs/tween.js@^18.1.2":
+  version "18.6.4"
+  resolved "https://registry.yarnpkg.com/@tweenjs/tween.js/-/tween.js-18.6.4.tgz#40a3d0a93647124872dec8e0fd1bd5926695b6ca"
+  integrity sha512-lB9lMjuqjtuJrx7/kOkqQBtllspPIN+96OvTCeJ2j5FEzinoAXTdAMFnDAQT1KVPRlnYfBrqxtqP66vDM40xxQ==
+
 "@types/glob@^7.1.1":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.4.tgz#ea59e21d2ee5c517914cb4bc8e4153b99e566672"
@@ -5356,6 +5361,19 @@ circular-json@^0.3.1:
   version "0.3.3"
   resolved "https://registry.npmjs.org/circular-json/-/circular-json-0.3.3.tgz"
   integrity sha512-UZK3NBx2Mca+b5LsG7bY183pHWt5Y1xts4P3Pz7ENTwGVnJOUWbRb3ocjvX7hx9tq/yTAdclXm9sZ38gNuem4A==
+
+ckeditor4-integrations-common@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ckeditor4-integrations-common/-/ckeditor4-integrations-common-1.0.0.tgz#a8afc33b94877b4d01362c7c73aa9eec162b2d20"
+  integrity sha512-OAoQT/gYrHkg0qgzf6MS/rndYhq3SScLVQ3rtXQeuCE8ju7nFHg3qZ7WGA2XpFxcZzsMP6hhugXqdel5vbcC3g==
+
+ckeditor4-react@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ckeditor4-react/-/ckeditor4-react-2.0.1.tgz#6c31c961d7eda8920475f4604c00c93d2a225146"
+  integrity sha512-eQosTZMs7IGQC2Cqp7tS3DJiUdGkQSi0F+WkqEc12NrpH9wZQYu1TurpsHXe9MRK21+HSl2nbQgVfGiUIPcKQg==
+  dependencies:
+    ckeditor4-integrations-common "^1.0.0"
+    prop-types "^15.7.2"
 
 ckeditor5@^29.2.0:
   version "29.2.0"
@@ -13691,6 +13709,14 @@ react-side-effect@^1.1.0:
   integrity sha512-v1ht1aHg5k/thv56DRcjw+WtojuuDHFUgGfc+bFHOWsF4ZK6C2V57DO0Or0GPsg6+LSTE0M6Ry/gfzhzSwbc5w==
   dependencies:
     shallowequal "^1.0.1"
+
+react-slideshow-image@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/react-slideshow-image/-/react-slideshow-image-3.6.0.tgz#14b4806cbbef6cba5c5e21eb135edef24dd59350"
+  integrity sha512-c0NSjqyX1fv+kg512+QI2TLzwLhx9nTrXICz1F2mxZ7kkwhS94zDBEN9lfqnXg18X5hpfIPvgFI7XDwKbg7CSA==
+  dependencies:
+    "@tweenjs/tween.js" "^18.1.2"
+    resize-observer-polyfill "^1.5.1"
 
 react-sortable-hoc@^2.0.0:
   version "2.0.0"
