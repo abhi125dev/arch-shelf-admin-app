@@ -5362,6 +5362,19 @@ circular-json@^0.3.1:
   resolved "https://registry.npmjs.org/circular-json/-/circular-json-0.3.3.tgz"
   integrity sha512-UZK3NBx2Mca+b5LsG7bY183pHWt5Y1xts4P3Pz7ENTwGVnJOUWbRb3ocjvX7hx9tq/yTAdclXm9sZ38gNuem4A==
 
+ckeditor4-integrations-common@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ckeditor4-integrations-common/-/ckeditor4-integrations-common-1.0.0.tgz#a8afc33b94877b4d01362c7c73aa9eec162b2d20"
+  integrity sha512-OAoQT/gYrHkg0qgzf6MS/rndYhq3SScLVQ3rtXQeuCE8ju7nFHg3qZ7WGA2XpFxcZzsMP6hhugXqdel5vbcC3g==
+
+ckeditor4-react@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/ckeditor4-react/-/ckeditor4-react-2.0.1.tgz#6c31c961d7eda8920475f4604c00c93d2a225146"
+  integrity sha512-eQosTZMs7IGQC2Cqp7tS3DJiUdGkQSi0F+WkqEc12NrpH9wZQYu1TurpsHXe9MRK21+HSl2nbQgVfGiUIPcKQg==
+  dependencies:
+    ckeditor4-integrations-common "^1.0.0"
+    prop-types "^15.7.2"
+
 ckeditor5@^29.2.0:
   version "29.2.0"
   resolved "https://registry.yarnpkg.com/ckeditor5/-/ckeditor5-29.2.0.tgz#5c23a475cd50553b2a586dad2818f4ab09818723"

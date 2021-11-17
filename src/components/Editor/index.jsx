@@ -1,10 +1,13 @@
 import React from "react";
 import DecoupledEditor from "@ckeditor/ckeditor5-build-decoupled-document";
+// import { CKEditor } from "ckeditor4-react";
 
 import CKEditor from "@ckeditor/ckeditor5-react";
 import CKEditorConfig from "../../config/appConfig";
 
 const Editor = ({ feedId, feedDetail, editorBody, setEditorBody }) => {
+  console.log(`feedDetail`, feedDetail);
+
   return (
     <div className="text-gray-800 rounded">
       <CKEditor
@@ -29,6 +32,14 @@ const Editor = ({ feedId, feedDetail, editorBody, setEditorBody }) => {
           CKEditorConfig.editor.toolbarType.notes
         }
       />
+      {/* <CKEditor
+        type="classic"
+        onChange={(data) => {
+          const editorData = data.editor.getData();
+          setEditorBody(editorData);
+        }}
+        initData={`<p>${feedId ? feedDetail : ""}</p>`}
+      /> */}
     </div>
   );
 };

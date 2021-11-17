@@ -44,12 +44,12 @@ const AddCompetitions = ({ user, feeds }) => {
   const [fileList, setFileList] = useState();
   const [hideUpload, setHideUpload] = useState(false);
   const [fetchCompetition, setFetchCompetition] = useState();
-  const postId = useParams().id;
+  const feedId = useParams().id;
 
   useEffect(() => {
-    if (postId) {
+    if (feedId) {
       getCompetition({
-        pathParams: { id: postId },
+        pathParams: { id: feedId },
       })
         .then((res) => {
           setFetchCompetition(res.data);
@@ -69,7 +69,7 @@ const AddCompetitions = ({ user, feeds }) => {
           }
         });
     }
-  }, [user, postId]);
+  }, [user, feedId]);
 
   // to open popup and review the image
   const handlePreview = (fileList) => {
@@ -77,7 +77,7 @@ const AddCompetitions = ({ user, feeds }) => {
   };
 
   // const deleteImage = () => {
-  //   deleteFeedImage({ pathParams: { id: postId } });
+  //   deleteFeedImage({ pathParams: { id: feedId } });
   // };
 
   useEffect(() => {
@@ -103,7 +103,7 @@ const AddCompetitions = ({ user, feeds }) => {
   }
 
   useEffect(() => {
-    if (fetchCompetition && fetchCompetition._id === postId) {
+    if (fetchCompetition && fetchCompetition._id === feedId) {
       const values = fetchCompetition;
       setEditorBody(values.body);
       form.setFieldsValue({
@@ -115,17 +115,18 @@ const AddCompetitions = ({ user, feeds }) => {
         submissionDate: values ? moment(values.submissionDate) : "",
       });
     }
-  }, [postId, user, fetchCompetition, form]);
+  }, [feedId, user, fetchCompetition, form]);
 
   function disabledDate(current) {
     return current && current < moment().endOf("day");
   }
+
   return (
     <>
       <div className="content-panel">
         <div className="profile-wrapper">
           <PageMetaTags
-            title={postId ? `Edit competition` : `Add competition`}
+            title={feedId ? `Edit competition` : `Add competition`}
           />
           <Breadcrumb style={{ marginBottom: 20 }}>
             <Breadcrumb.Item>
@@ -135,11 +136,11 @@ const AddCompetitions = ({ user, feeds }) => {
               <Link to="/competitions">Competition</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              {postId ? `Edit competition` : `Add competition`}
+              {feedId ? `Edit competition` : `Add competition`}
             </Breadcrumb.Item>
           </Breadcrumb>
           <h1 className="page-heading">
-            {postId ? `Edit competition` : `Add competition`}
+            {feedId ? `Edit competition` : `Add competition`}
           </h1>
           <Skeleton loading={getLoading}>
             <Form
@@ -166,10 +167,10 @@ const AddCompetitions = ({ user, feeds }) => {
                 bodyFormData.append("startDay", body.startDay);
                 bodyFormData.append("submissionDate", body.submissionDate);
                 bodyFormData.append("media", contentList);
-                if (postId) {
+                if (feedId) {
                   updateCompetition({
                     body: bodyFormData,
-                    pathParams: { id: postId },
+                    pathParams: { id: feedId },
                   })
                     .then((res) => {
                       setLoading(false);
@@ -375,7 +376,7 @@ const AddCompetitions = ({ user, feeds }) => {
                                 }}
                               ></Button>
                             </Popconfirm>
-                            {postId && (
+                            {feedId && (
                               <Upload
                                 accept=".jpg, .jpeg, .png"
                                 multiple
@@ -434,13 +435,13 @@ const AddCompetitions = ({ user, feeds }) => {
                       accept=".jpg, .jpeg, .png"
                       type="drag"
                       style={{ border: 0 }}
-                      // convert file size, generate postId, convert file to base64, await & promise
+                      // convert file size, generate feedId, convert file to base64, await & promise
                       beforeUpload={async (uploadContent) => {
                         await toBase64(uploadContent)
                           .then((response) => {
                             const obj = {
                               document: response,
-                              postId: Math.floor(Math.random() * (999 - 0) + 0),
+                              feedId: Math.floor(Math.random() * (999 - 0) + 0),
                               name: uploadContent.name,
                               // size: fileSizeConvertor(uploadContent.size),
                             };
@@ -472,11 +473,9 @@ const AddCompetitions = ({ user, feeds }) => {
               <div className="mt-8">
                 <p className="font-medium text-gray-800">Description</p>
                 <Editor
-                  postId={postId}
+                  feedId={feedId}
                   setEditorBody={setEditorBody}
-                  feedDetail={
-                    feeds && feeds.feedDetail && feeds.feedDetail.body
-                  }
+                  feedDetail={fetchCompetition ? fetchCompetition.body : ""}
                   editorBody={editorBody}
                 />
               </div>
@@ -488,7 +487,7 @@ const AddCompetitions = ({ user, feeds }) => {
                   htmlType="submit"
                   disabled={loading}
                 >
-                  {postId
+                  {feedId
                     ? `${loading ? "Updating..." : "Update"}`
                     : `${loading ? "Adding..." : "Add"}`}
                 </Button>
