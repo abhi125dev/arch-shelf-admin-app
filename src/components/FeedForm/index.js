@@ -112,7 +112,9 @@ const FeedForm = ({
     setPreviewVisible(true);
     if (feedId) {
       setPreviewImage(item);
-    } else setPreviewImage(URL.createObjectURL(item));
+    } else {
+      setPreviewImage(URL.createObjectURL(item));
+    }
   };
 
   const handleCancel = () => {
@@ -309,74 +311,24 @@ const FeedForm = ({
             </Col> */}
             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
               <div className="font-medium text-gray-800 mb-2">Attachment</div>
-              <div>
-                {fileList ? (
-                  <div className="wrapper" style={{ width: "20%" }}>
-                    <div className="delete">
-                      <div className="w-8 h-8 rounded-full flex justify-center space-x-4 mb-2">
-                        {feedId && (
-                          <Upload
-                            accept=".jpg, .jpeg, .png"
-                            type="drag"
-                            multiple
-                            style={{ border: 0 }}
-                            // convert file size, generate feedId, convert file to base64, await & promise
-                            beforeUpload={async (uploadContent) => {
-                              await toBase64(uploadContent)
-                                .then((response) => {
-                                  const obj = {
-                                    document: response,
-                                    name: uploadContent.name,
-                                  };
-                                  // setFileList(obj, fileList);
-                                  // setContentList(uploadContent, contentList);
-                                  setFileList((prevState) => [
-                                    ...prevState,
-                                    obj,
-                                  ]);
-                                  setContentList((prevState) => [
-                                    ...prevState,
-                                    uploadContent,
-                                  ]);
-                                })
-                                .catch(() => {});
-                              return false;
-                            }}
-                            fileList={[]}
-                          >
-                            {/* file upload button  */}
-                            {/* <Button
-                              icon={<EditOutlined />}
-                              onSelect={() => deleteImage()}
-                              shape="circle"
-                              style={{
-                                backgroundColor: "#16975f",
-                                color: "white",
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "stretch",
-                              }}
-                            ></Button> */}
-                          </Upload>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
               <Modal
                 visible={previewVisible}
                 footer={null}
                 onCancel={handleCancel}
               >
-                <iframe
-                  title="model"
-                  src={previewImage}
-                  style={{ width: "100%", height: 500 }}
-                  // type="application/pdf"
-                />
+                {feedId ? (
+                  <img
+                    alt="Feed"
+                    src={previewImage}
+                    style={{ width: "100%", height: "400px" }}
+                  />
+                ) : (
+                  <iframe
+                    title="model"
+                    src={previewImage}
+                    style={{ width: "100%", height: 500 }}
+                  />
+                )}
               </Modal>
               <div className="">
                 {fileList.length > 0
@@ -487,8 +439,6 @@ const FeedForm = ({
                           document: response,
                           name: uploadContent.name,
                         };
-                        // setFileList(obj, fileList);
-                        // setContentList(uploadContent, contentList);
                         setFileList((prevState) => [...prevState, obj]);
                         setContentList((prevState) => [
                           ...prevState,
