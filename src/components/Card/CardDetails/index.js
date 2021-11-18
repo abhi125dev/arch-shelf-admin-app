@@ -7,15 +7,7 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
-import {
-  notification,
-  Button,
-  Image,
-  Tooltip,
-  Row,
-  Pagination,
-  Carousel,
-} from "antd";
+import { notification, Button, Tooltip, Row, Pagination, Carousel } from "antd";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
 import { DeleteOutlined } from "@ant-design/icons";
