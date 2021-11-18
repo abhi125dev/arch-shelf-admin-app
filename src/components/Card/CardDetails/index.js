@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { UserOutlined, FieldTimeOutlined } from "@ant-design/icons";
+import {
+  UserOutlined,
+  FieldTimeOutlined,
+  LeftOutlined,
+  RightOutlined,
+} from "@ant-design/icons";
 import moment from "moment";
 import {
   notification,
@@ -21,6 +26,7 @@ import {
   deleteComment,
 } from "../../../services/blog";
 import { getCommentsAction } from "Actions/commentActions";
+import "./index.less";
 
 const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
   const history = useHistory();
@@ -28,6 +34,7 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
   const [start, setStart] = useState(0);
   const [limit, setLimit] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
+  const sliderRef = useRef(null);
 
   const onChange = () => {
     const body = {
@@ -107,21 +114,41 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
   return (
     <>
       <div className="mb-2">
-        <Carousel autoplay>
-          {item &&
-            item.media &&
-            item.media.map((img) => (
-              <div>
-                <Image
-                  preview={false}
-                  width={1000}
-                  src={img.url}
-                  alt="image not found"
-                />
-              </div>
-            ))}
-        </Carousel>
-        ,
+        <div>
+          <div className="mask-4 w-slider-mask">
+            <div className="w-slide">
+              <Carousel autoplay ref={sliderRef}>
+                {item &&
+                  item.media &&
+                  item.media.map((img) => (
+                    <div>
+                      {/* <Image
+                        preview={false}
+                        width={1040}
+                        src={img.url}
+                        alt="image not found"
+                      /> */}
+                      <img className="w-full" src={img.url} alt="img" />
+                    </div>
+                  ))}
+              </Carousel>
+            </div>
+          </div>
+          <div className="flex justify-between">
+            <div>
+              <LeftOutlined
+                onClick={() => sliderRef.current.prev()}
+                style={{ fontSize: "20px", marginRight: "20px" }}
+              />
+            </div>
+            <div>
+              <RightOutlined
+                onClick={() => sliderRef.current.next()}
+                style={{ fontSize: "20px" }}
+              />
+            </div>
+          </div>
+        </div>
         {/* <img
           className="w-full rounded-xl"
           src={
