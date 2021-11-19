@@ -4,6 +4,7 @@ import { Link, useParams, useHistory } from "react-router-dom";
 import CardDetails from "../Card/CardDetails";
 import { PageMetaTags } from "../common";
 import PropTypes from "prop-types";
+import { addDashboardFeed } from "../../services/blog";
 import { withContext } from "Context";
 import { deleteFeed } from "../../services/blog";
 import { getFeedAction } from "Actions/feedActions";
@@ -32,6 +33,31 @@ const ViewBlog = ({ user, getFeedFunc, feeds }) => {
         }
       });
   }, [user]);
+  const onChange = () => {
+    const body = {
+      feed: id,
+    };
+    addDashboardFeed({ body })
+      .then((res) => {
+        if (res.data._id) {
+          notification.success({
+            message: `Feed added on dashboard successfully`,
+          });
+          history.push("/");
+        }
+      })
+      .catch((err) => {
+        if (err && err.status === 400) {
+          notification.error({
+            message: "Failed to add feed in dashboard",
+          });
+        } else {
+          notification.error({
+            message: `${err.data.error.message}`,
+          });
+        }
+      });
+  };
 
   const deleteFeedFunc = () => {
     deleteFeed({ pathParams: { id } })
@@ -70,7 +96,10 @@ const ViewBlog = ({ user, getFeedFunc, feeds }) => {
             <Link
               to={getLinks(feeds.feedDetail ? feeds.feedDetail.type : "N/A")}
             >
-              {feeds.feedDetail ? feeds.feedDetail.type : "N/A"}
+              {feeds.feedDetail && feeds.feedDetail.type
+                ? feeds.feedDetail.type.charAt(0).toUpperCase() +
+                  feeds.feedDetail.type.slice(1)
+                : "N/A"}
             </Link>
           </Breadcrumb.Item>
           <Breadcrumb.Item>
@@ -84,7 +113,23 @@ const ViewBlog = ({ user, getFeedFunc, feeds }) => {
           >
             {feeds.feedDetail ? `${feeds.feedDetail.title}` : "N/A"}
           </h1>
-          <div>
+          <div className="space-x-3">
+            <Button
+              onClick={() => onChange()}
+              disabled={
+                feeds.feedDetail &&
+                feeds.feedDetail.dashboardFeed &&
+                feeds.feedDetail.dashboardFeed[0] &&
+                feeds.feedDetail.dashboardFeed[0].feed
+              }
+            >
+              {feeds.feedDetail &&
+              feeds.feedDetail.dashboardFeed &&
+              feeds.feedDetail.dashboardFeed[0] &&
+              feeds.feedDetail.dashboardFeed[0].feed
+                ? `Added on home`
+                : `Add on home`}
+            </Button>
             <Button
               type="primary"
               className="mr-2"

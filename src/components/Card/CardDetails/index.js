@@ -1,58 +1,28 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
-  UserOutlined,
   FieldTimeOutlined,
   LeftOutlined,
   RightOutlined,
 } from "@ant-design/icons";
 import moment from "moment";
-import { notification, Button, Tooltip, Row, Pagination, Carousel } from "antd";
+import { notification, Tooltip, Row, Pagination, Carousel } from "antd";
+import Avatar from "antd/lib/avatar/avatar";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
 import { DeleteOutlined } from "@ant-design/icons";
 import SearchNotFound from "../../../assets/images/empty-search-contact.png";
-import {
-  addDashboardFeed,
-  getComments,
-  deleteComment,
-} from "../../../services/blog";
+import { getInitials } from "../../../utils";
+import { getComments, deleteComment } from "../../../services/blog";
 import { getCommentsAction } from "Actions/commentActions";
 import "./index.less";
 
 const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
-  const history = useHistory();
   const { id } = useParams();
   const [start, setStart] = useState(0);
   const [limit, setLimit] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const sliderRef = useRef(null);
-
-  const onChange = () => {
-    const body = {
-      feed: item._id,
-    };
-    addDashboardFeed({ body })
-      .then((res) => {
-        if (res.data._id) {
-          notification.success({
-            message: `Feed added on dashboard successfully`,
-          });
-          history.push("/");
-        }
-      })
-      .catch((err) => {
-        if (err && err.status === 400) {
-          notification.error({
-            message: "Failed to add feed in dashboard",
-          });
-        } else {
-          notification.error({
-            message: `${err.data.error.message}`,
-          });
-        }
-      });
-  };
 
   const getAllComments = () => {
     getComments({
@@ -114,12 +84,6 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
                   item.media &&
                   item.media.map((img) => (
                     <div>
-                      {/* <Image
-                        preview={false}
-                        width={1040}
-                        src={img.url}
-                        alt="image not found"
-                      /> */}
                       <img className="w-full" src={img.url} alt="img" />
                     </div>
                   ))}
@@ -141,15 +105,6 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
             </div>
           </div>
         </div>
-        {/* <img
-          className="w-full rounded-xl"
-          src={
-            item && item.media && item.media.url
-              ? item.media.url
-              : "https://images.unsplash.com/photo-1561835491-ed2567d96913?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1050&q=80"
-          }
-          alt="Colors"
-        /> */}
       </div>
       <div className="mb-2 flex items-center justify-between">
         <div className="flex items-center ">
@@ -165,12 +120,25 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
       </div>
       <div>
         <h4 className="break-all">{item ? item.title : "N/A"}</h4>
-        <p>
-          <div className="flex items-center ">
-            <UserOutlined className="mr-2" />
+        <div className="flex items-center">
+          <div className="profile-pic">
+            <Avatar
+              style={{ background: "#16975f" }}
+              src={
+                item &&
+                item.user &&
+                item.user.profile_pic_path &&
+                item.user.profile_pic_path
+              }
+            >
+              {getInitials(item ? item.user && item.user.name : "N/A")}
+            </Avatar>
+          </div>
+          <div className="font-bold text-gray-700 hover:underline">
             {item ? item.user && item.user.name : "N/A"}
           </div>
-        </p>
+        </div>
+        <br />
         <h5 className="border-b pb-2 break-all">
           {item ? (
             <span
@@ -252,16 +220,6 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
         ) : (
           ""
         )}
-        <div className="flex justify-between mt-4">
-          <Button onClick={() => onChange()}>
-            {item &&
-            item.dashboardFeed &&
-            item.dashboardFeed[0] &&
-            item.dashboardFeed[0].feed
-              ? `Added on home`
-              : `Add on home`}
-          </Button>
-        </div>
       </div>
     </>
   );
