@@ -55,6 +55,7 @@ const FeedForm = ({
   const [contentList, setContentList] = useState([]);
   const [fileList, setFileList] = useState([]);
   const [previewVisible, setPreviewVisible] = useState();
+  const [fileLength, setFileLength] = useState();
 
   const feedId = useParams().id;
 
@@ -90,7 +91,7 @@ const FeedForm = ({
         .then((res) => {
           getFeedFunc(res.data);
           setFileList(res.data.media);
-          setPreviewImage(res.data.media);
+          setFileLength(res.data.media.length);
         })
         .catch((err) => {
           if (err && err.status === 422) {
@@ -109,19 +110,28 @@ const FeedForm = ({
   }, [user, feedId]);
 
   const handlePreview = (item) => {
-    setPreviewVisible(true);
     if (feedId) {
-      setPreviewImage(item);
+      if (item.name) {
+        setPreviewImage(URL.createObjectURL(item));
+      } else {
+        setPreviewImage(item);
+      }
     } else {
       setPreviewImage(URL.createObjectURL(item));
     }
+    setPreviewVisible(true);
   };
 
   const handleCancel = () => {
     setPreviewVisible(false);
   };
 
-  const deleteImage = (url) => {
+  const deleteImage = (url, index) => {
+    if (url.name) {
+      setFileList(fileList.filter((item, i) => i !== index));
+      setContentList(contentList.filter((item, i) => i !== index - fileLength));
+      return;
+    }
     deleteFeedImage({ pathParams: { id: feedId }, body: { url } }).then(
       (res) => {
         setFileList(res.data.media);
@@ -156,7 +166,6 @@ const FeedForm = ({
       });
     }
   }, [feedId, user, feeds, form]);
-
   return (
     <div className="profile-wrapper">
       <PageMetaTags title={feedId ? `Edit ${pageName}` : `Add ${pageName}`} />
@@ -300,15 +309,6 @@ const FeedForm = ({
                 <Input size="large" placeholder="Enter short description" />
               </Form.Item>
             </Col>
-            {/* <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-              <Form.Item
-                name="url"
-                label={<p className="font-medium text-gray-800">Link</p>}
-                rules={[{ type: "url", message: `Please enter valid url` }]}
-              >
-                <Input size="large" placeholder="Enter url" />
-              </Form.Item>
-            </Col> */}
             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
               <div className="font-medium text-gray-800 mb-2">Attachment</div>
               <Modal
@@ -351,7 +351,13 @@ const FeedForm = ({
                             <div className="flex">
                               <div
                                 className="w-8 h-8 rounded-full flex justify-center flex-col"
-                                onClick={() => handlePreview(item.url)}
+                                onClick={() => {
+                                  item.url
+                                    ? handlePreview(item.url)
+                                    : handlePreview(
+                                        contentList[index - fileLength]
+                                      );
+                                }}
                                 style={{
                                   backgroundColor: "#1890ff",
                                   color: "white",
@@ -365,7 +371,10 @@ const FeedForm = ({
                                 placement="right"
                                 title="Are you sure, you want to delete"
                                 onConfirm={() => {
-                                  deleteImage(item.url);
+                                  deleteImage(
+                                    item.url ? item.url : item,
+                                    index
+                                  );
                                 }}
                               >
                                 <Button
