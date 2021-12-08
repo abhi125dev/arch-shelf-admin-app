@@ -15,6 +15,9 @@ import Breakfast from "../components/pages/Breakfast";
 import AddBreakfast from "../components/pages/Breakfast/AddBreakfast";
 import View from "../components/pages/Competitions/view";
 import Query from "../components/pages/Query";
+import Products from "../components/pages/Products";
+import AddProducts from "../components/pages/Products/AddProducts";
+import ViewProject from "../components/ViewProject";
 const navigationRoutes = [
   {
     path: "/dashboard",
@@ -62,11 +65,27 @@ const navigationRoutes = [
   },
   {
     path: "/projects/:id",
-    component: ViewFeed,
+    component: ViewProject,
   },
   {
     path: "/projects/:id/edit",
     component: AddProjects,
+  },
+  {
+    path: "/products",
+    component: Products,
+  },
+  {
+    path: "/product/add",
+    component: AddProducts,
+  },
+  {
+    path: "/products/:id",
+    component: ViewFeed,
+  },
+  {
+    path: "/products/:id/edit",
+    component: AddProducts,
   },
   {
     path: "/courses",

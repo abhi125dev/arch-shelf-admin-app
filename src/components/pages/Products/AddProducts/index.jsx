@@ -2,23 +2,22 @@ import React from "react";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
 import FeedForm from "../../../FeedForm";
-import ProjectForm from "../../../ProjectForm";
 
-const AddProjects = () => {
+const AddProducts = () => {
   return (
     <>
       <div className="content-panel">
-        <ProjectForm
-          pageType="projects"
-          pageName="Project"
-          allPageUrl="/projects"
+        <FeedForm
+          pageType="products"
+          pageName="Product"
+          allPageUrl="/products"
         />
       </div>
     </>
   );
 };
 
-AddProjects.propTypes = {
+AddProducts.propTypes = {
   AddInitiative: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
@@ -29,5 +28,5 @@ export default withContext(
   ([{ user }]) => ({
     user,
   }),
-  AddProjects
+  AddProducts
 );

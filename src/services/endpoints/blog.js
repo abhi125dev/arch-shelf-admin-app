@@ -38,6 +38,50 @@ const blog = {
       uri: "/feeds/:id",
     },
   },
+  addProject: {
+    v1: {
+      ...defaults.methods.POST,
+      ...defaults.versions.v1,
+      uri: "/projects",
+    },
+  },
+
+  getProjects: {
+    v1: {
+      ...defaults.methods.GET,
+      ...defaults.versions.v1,
+      uri: "/projects",
+    },
+  },
+
+  getProject: {
+    v1: {
+      ...defaults.methods.GET,
+      ...defaults.versions.v1,
+      uri: "/projects/:id",
+    },
+  },
+  deleteProject: {
+    v1: {
+      ...defaults.methods.DELETE,
+      ...defaults.versions.v1,
+      uri: "/projects/:id",
+    },
+  },
+  updateProject: {
+    v1: {
+      ...defaults.methods.PUT,
+      ...defaults.versions.v1,
+      uri: "/projects/:id",
+    },
+  },
+  deleteProjectImage: {
+    v1: {
+      ...defaults.methods.PUT,
+      ...defaults.versions.v1,
+      uri: "/projects/image/:id",
+    },
+  },
   addDashboardFeed: {
     v1: {
       ...defaults.methods.POST,

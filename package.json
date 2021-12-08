@@ -37,6 +37,7 @@
     "core-js": "^3.6.2",
     "css-loader": "1.0.0",
     "date-arithmetic": "^4.1.0",
+    "dayjs": "^1.10.7",
     "dotenv": "6.0.0",
     "dotenv-expand": "4.2.0",
     "es6-promise": "^4.2.8",

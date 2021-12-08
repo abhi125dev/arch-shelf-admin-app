@@ -79,15 +79,18 @@ const Resources = ({ user, feeds, getFeedsFunc }) => {
         </Breadcrumb.Item>
         <Breadcrumb.Item>Resources</Breadcrumb.Item>
       </Breadcrumb>
-      <div className="flex items-center justify-between space-x-6">
+      <div className="flex flex-col md:flex-row items-center justify-between space-x-6">
         <span className="page-heading ">Resources</span>
-
-        <Input
-          size="small"
-          onChange={(e) => debounceSearch(e.target.value)}
-          placeholder="Search by title"
-        />
-        <div className="flex space-x-4">
+        <br />
+        <div className="md:w-2/3">
+          <Input
+            size="small"
+            onChange={(e) => debounceSearch(e.target.value)}
+            placeholder="Search by title"
+          />
+        </div>
+        <br />
+        <div className="flex flex-col md:flex-row md:justify-end md:space-x-4">
           <div>
             <Select
               size="large"
@@ -104,6 +107,7 @@ const Resources = ({ user, feeds, getFeedsFunc }) => {
                 ))}
             </Select>
           </div>
+          <br />
           <Button
             size="large"
             type="primary"

@@ -13,13 +13,13 @@ import { useHistory } from "react-router-dom";
 import { Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
 import { PageMetaTags } from "../../common";
-import { getProjects, getOptions } from "../../../services/blog";
+import { getFeeds, getOptions } from "../../../services/blog";
 import { getFeedsAction } from "Actions/feedActions";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
 import Card from "../../Card/index";
 import { debounce } from "lodash";
-const Projects = ({ user, getFeedsFunc, feeds }) => {
+const Products = ({ user, getFeedsFunc, feeds }) => {
   const [start, setStart] = useState(0);
   const [limit, setLimit] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,13 +33,13 @@ const Projects = ({ user, getFeedsFunc, feeds }) => {
   useEffect(() => {
     setLoading(true);
     const body = {
-      type: "projects",
+      type: "products",
       start,
       limit,
       selected,
       keywordState,
     };
-    getProjects({ query: body })
+    getFeeds({ query: body })
       .then((res) => {
         getFeedsFunc(res.data);
         setLoading(false);
@@ -60,7 +60,7 @@ const Projects = ({ user, getFeedsFunc, feeds }) => {
   }, [user, start, limit, selected, keywordState]);
 
   useEffect(() => {
-    getOptions({ query: { categoryType: "projects" } }).then((res) => {
+    getOptions({ query: { categoryType: "products" } }).then((res) => {
       setOptions(res.categories);
     });
   }, []);
@@ -73,15 +73,15 @@ const Projects = ({ user, getFeedsFunc, feeds }) => {
   const debounceSearch = debounce(action, 1000);
   return (
     <div className="content-panel">
-      <PageMetaTags title="Projects" />
+      <PageMetaTags title="Products" />
       <Breadcrumb style={{ marginBottom: 20 }}>
         <Breadcrumb.Item>
           <Link to="/dashboard">Home</Link>
         </Breadcrumb.Item>
-        <Breadcrumb.Item>Projects</Breadcrumb.Item>
+        <Breadcrumb.Item>Products</Breadcrumb.Item>
       </Breadcrumb>
       <div className="flex flex-col md:flex-row items-center justify-between space-x-6">
-        <span className="page-heading">Projects</span>
+        <span className="page-heading">Products</span>
         <br />
         <div className="md:w-2/3">
           <Input
@@ -113,9 +113,9 @@ const Projects = ({ user, getFeedsFunc, feeds }) => {
           <Button
             size="large"
             type="primary"
-            onClick={() => history.push("/project/add")}
+            onClick={() => history.push("/product/add")}
           >
-            Add project
+            Add product
           </Button>
         </div>
       </div>
@@ -124,7 +124,7 @@ const Projects = ({ user, getFeedsFunc, feeds }) => {
         <Spin tip="Loading..." spinning={loading} size="large">
           {feedsList &&
             feedsList.feedList.map((val) => (
-              <Card type="projects" item={val} />
+              <Card type="products" item={val} />
             ))}
           <Row className="p-4" type="flex" justify="end">
             <Pagination
@@ -162,7 +162,7 @@ const Projects = ({ user, getFeedsFunc, feeds }) => {
   );
 };
 
-Projects.propTypes = {
+Products.propTypes = {
   Initiative: PropTypes.func.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
@@ -175,5 +175,5 @@ export default withContext(
     feeds,
     getFeedsFunc: (data) => getFeedsAction(data, dispatch),
   }),
-  Projects
+  Products
 );

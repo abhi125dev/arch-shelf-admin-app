@@ -16,6 +16,23 @@ export const deleteFeed = ({ pathParams }) =>
 export const updateFeed = ({ body, pathParams }) =>
   callApi({ uriEndPoint: blog.updateFeed.v1, body, pathParams });
 
+export const addProject = ({ body }) =>
+  callApi({ uriEndPoint: blog.addProject.v1, body });
+
+export const getProjects = ({ query }) =>
+  callApi({ uriEndPoint: blog.getProjects.v1, query });
+
+export const getProject = ({ pathParams }) =>
+  callApi({ uriEndPoint: blog.getProject.v1, pathParams });
+
+export const deleteProject = ({ pathParams }) =>
+  callApi({ uriEndPoint: blog.deleteProject.v1, pathParams });
+
+export const updateProject = ({ body, pathParams }) =>
+  callApi({ uriEndPoint: blog.updateProject.v1, body, pathParams });
+
+export const deleteProjectImage = ({ pathParams, body }) =>
+  callApi({ uriEndPoint: blog.deleteProjectImage.v1, pathParams, body });
 export const addDashboardFeed = ({ body }) =>
   callApi({ uriEndPoint: blog.addDashboardFeed.v1, body });
 

@@ -91,6 +91,7 @@ export const getInitials = (name) => {
 export const categoryTypes = () => {
   return [
     { id: "resources", value: "Resource" },
+    { id: "products", value: "Product" },
     { id: "projects", value: "Project" },
     { id: "courses", value: "Course" },
     // { id: "competitions", value: "Competition" },
@@ -102,6 +103,8 @@ export const getLinks = (type) => {
   switch (type) {
     case "resource":
       return "/resources";
+    case "products":
+      return "/products";
     case "projects":
       return "/projects";
     case "courses":

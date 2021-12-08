@@ -3,6 +3,7 @@ const student = [
   { name: "Category", icon: "fa-list", path: "/categories" },
   { name: "Resources", icon: "fa-comment-dots", path: "/resources" },
   // { name: "Testimonial", icon: "fa-th", path: "/testimonials" },
+  { name: "Products", icon: "fa-check", path: "/products" },
   { name: "Projects", icon: "fa-check", path: "/projects" },
   { name: "Courses", icon: "fa-book", path: "/courses" },
   { name: "Competitions", icon: "fa-life-ring", path: "/competitions" },
