@@ -225,40 +225,73 @@ const ProjectForm = ({
               type: pageType,
             };
             const bodyFormData = new FormData();
-            bodyFormData.append("title", body.title);
-            bodyFormData.append("category", body.category);
-            bodyFormData.append("shortDescription", body.shortDescription);
+            bodyFormData.append("title", body && body.title && body.title);
+            bodyFormData.append(
+              "category",
+              body && body.category && body.category
+            );
+            if (body && body.shortDescription) {
+              bodyFormData.append(
+                "shortDescription",
+                body && body.shortDescription && body.shortDescription
+              );
+            }
             bodyFormData.append("body", editorBody);
-            bodyFormData.append(
-              "architects",
-              values.architects && values.architects.toLowerCase()
-            );
-            bodyFormData.append(
-              "manufacturers",
-              values.manufacturers.toLowerCase()
-            );
-            bodyFormData.append(
-              "materials",
-              values.materials && values.materials.toLowerCase()
-            );
-            bodyFormData.append(
-              "country",
-              values.country && values.country.toLowerCase()
-            );
-            bodyFormData.append("area", parseInt(values.area));
-            bodyFormData.append(
-              "clients",
-              values.clients && values.clients.toLowerCase()
-            );
-            bodyFormData.append(
-              "leadArchitects",
-              values.leadArchitects && values.leadArchitects.toLowerCase()
-            );
-            bodyFormData.append(
-              "photographs",
-              values.photographs && values.photographs.toLowerCase()
-            );
-            bodyFormData.append("year", dayjs(values.year, "YYYY").$y);
+            if (values && values.architects) {
+              bodyFormData.append(
+                "architects",
+                values && values.architects && values.architects.toLowerCase()
+              );
+            }
+            if (values && values.manufacturers) {
+              bodyFormData.append(
+                "manufacturers",
+                values &&
+                  values.manufacturers &&
+                  values.manufacturers.toLowerCase()
+              );
+            }
+            if (values && values.materials) {
+              bodyFormData.append(
+                "materials",
+                values && values.materials && values.materials.toLowerCase()
+              );
+            }
+            if (values && values.country) {
+              bodyFormData.append(
+                "country",
+                values && values.country && values.country.toLowerCase()
+              );
+            }
+            if (values.area) {
+              bodyFormData.append("area", parseInt(values.area));
+            }
+            if (values && values.clients) {
+              bodyFormData.append(
+                "clients",
+                values && values.clients && values.clients.toLowerCase()
+              );
+            }
+            if (values && values.leadArchitects) {
+              bodyFormData.append(
+                "leadArchitects",
+                values &&
+                  values.leadArchitects &&
+                  values.leadArchitects.toLowerCase()
+              );
+            }
+            if (values && values.photographs) {
+              bodyFormData.append(
+                "photographs",
+                values && values.photographs && values.photographs.toLowerCase()
+              );
+            }
+            if (values && values.year) {
+              bodyFormData.append(
+                "year",
+                values && values.year && dayjs(values.year, "YYYY").$y
+              );
+            }
 
             // bodyFormData.append("url", body.url);
             bodyFormData.append("type", pageType);
@@ -374,7 +407,6 @@ const ProjectForm = ({
                 <Input
                   size="large"
                   placeholder="Enter achitects ',' separated"
-                  defaultValue="Architect1, Architect2"
                 />
               </Form.Item>
             </Col>
@@ -402,7 +434,6 @@ const ProjectForm = ({
                 <Input
                   size="large"
                   placeholder="Enter photographers ',' separated"
-                  defaultValue="Photographs1, Photographs2"
                 />
               </Form.Item>
             </Col>
@@ -416,7 +447,6 @@ const ProjectForm = ({
                 <Input
                   size="large"
                   placeholder="Enter manufacturers ',' separated"
-                  defaultValue="Manufacturers1, Manufacturers2"
                 />
               </Form.Item>
             </Col>
@@ -428,7 +458,6 @@ const ProjectForm = ({
                 <Input
                   size="large"
                   placeholder="Enter clients ',' separated "
-                  defaultValue="Clients1, Clients2"
                 />
               </Form.Item>
             </Col>
@@ -450,7 +479,6 @@ const ProjectForm = ({
                 <Input
                   size="large"
                   placeholder="Enter lead architects ',' separated"
-                  defaultValue="Lead architect1, Lead architect2"
                 />
               </Form.Item>
             </Col>
@@ -462,7 +490,6 @@ const ProjectForm = ({
                 <Input
                   size="large"
                   placeholder="Enter materials ',' separated"
-                  defaultValue="Materials1, Materials2"
                 />
               </Form.Item>
             </Col>

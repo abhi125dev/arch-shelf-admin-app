@@ -66,7 +66,7 @@ const ViewProject = ({ user, getFeedFunc, feeds }) => {
           notification.success({
             message: "Blog deleted successfully",
           });
-          history.push(getLinks(feeds.feedDetail.type));
+          history.push("/projects");
         }
       })
       .catch((err) => {

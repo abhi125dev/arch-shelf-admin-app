@@ -201,7 +201,9 @@ const FeedForm = ({
             const bodyFormData = new FormData();
             bodyFormData.append("title", body.title);
             bodyFormData.append("category", body.category);
-            bodyFormData.append("shortDescription", body.shortDescription);
+            if (body.shortDescription) {
+              bodyFormData.append("shortDescription", body.shortDescription);
+            }
             bodyFormData.append("body", editorBody);
             // bodyFormData.append("url", body.url);
             bodyFormData.append("type", pageType);
