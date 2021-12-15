@@ -371,7 +371,11 @@ const ProjectForm = ({
                 name="architects"
                 label={<p className="font-medium text-gray-800">Architects</p>}
               >
-                <Input size="large" placeholder="Enter short description" />
+                <Input
+                  size="large"
+                  placeholder="Enter achitects ',' separated"
+                  defaultValue="Architect1, Architect2"
+                />
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12}>
@@ -379,7 +383,7 @@ const ProjectForm = ({
                 name="area"
                 label={<p className="font-medium text-gray-800">Area</p>}
               >
-                <Input size="large" placeholder="Enter short description" />
+                <Input size="large" placeholder="Enter area in m^2" />
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12}>
@@ -395,7 +399,11 @@ const ProjectForm = ({
                 name="photographs"
                 label={<p className="font-medium text-gray-800">Photographs</p>}
               >
-                <Input size="large" placeholder="Enter short description" />
+                <Input
+                  size="large"
+                  placeholder="Enter photographers ',' separated"
+                  defaultValue="Photographs1, Photographs2"
+                />
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12}>
@@ -405,7 +413,11 @@ const ProjectForm = ({
                   <p className="font-medium text-gray-800">Manufacturers</p>
                 }
               >
-                <Input size="large" placeholder="Enter short description" />
+                <Input
+                  size="large"
+                  placeholder="Enter manufacturers ',' separated"
+                  defaultValue="Manufacturers1, Manufacturers2"
+                />
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12}>
@@ -413,7 +425,11 @@ const ProjectForm = ({
                 name="clients"
                 label={<p className="font-medium text-gray-800">Clients</p>}
               >
-                <Input size="large" placeholder="Enter short description" />
+                <Input
+                  size="large"
+                  placeholder="Enter clients ',' separated "
+                  defaultValue="Clients1, Clients2"
+                />
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12}>
@@ -421,7 +437,7 @@ const ProjectForm = ({
                 name="country"
                 label={<p className="font-medium text-gray-800">Country</p>}
               >
-                <Input size="large" placeholder="Enter short description" />
+                <Input size="large" placeholder="Enter country" />
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12}>
@@ -431,7 +447,11 @@ const ProjectForm = ({
                   <p className="font-medium text-gray-800">Lead architects</p>
                 }
               >
-                <Input size="large" placeholder="Enter short description" />
+                <Input
+                  size="large"
+                  placeholder="Enter lead architects ',' separated"
+                  defaultValue="Lead architect1, Lead architect2"
+                />
               </Form.Item>
             </Col>
             <Col xs={24} sm={24} md={12} lg={12} xl={12}>
@@ -439,7 +459,11 @@ const ProjectForm = ({
                 name="materials"
                 label={<p className="font-medium text-gray-800">Materials</p>}
               >
-                <Input size="large" placeholder="Enter short description" />
+                <Input
+                  size="large"
+                  placeholder="Enter materials ',' separated"
+                  defaultValue="Materials1, Materials2"
+                />
               </Form.Item>
             </Col>
             <Col xl={24} lg={24} md={24} sm={24} xs={24}>
