@@ -143,6 +143,7 @@ const ProjectForm = ({
         setFileList(res.data.media);
       }
     );
+    setFileLength(fileLength - 1);
   };
 
   // file convert to base 64
