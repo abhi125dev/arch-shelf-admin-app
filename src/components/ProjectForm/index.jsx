@@ -163,7 +163,6 @@ const ProjectForm = ({
   useEffect(() => {
     if (feeds && feeds.feedDetail && feedId === feeds.feedDetail._id) {
       const values = feeds.feedDetail;
-      console.log(`values`, values);
       setEditorBody(values.body);
       form.setFieldsValue({
         blogCategory: values ? values._id && values.category._id : "",
@@ -171,20 +170,45 @@ const ProjectForm = ({
         url: values ? values.url : "",
         shortDescription: values ? values.shortDescription : "",
         architects: values
-          ? values.architects && values.architects.join(",")
+          ? values.architects &&
+            values.architects
+              .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+              .join(",")
           : "",
         area: values ? values.area && values.area : "",
-        clients: values ? values.clients && values.clients.join(",") : "",
-        country: values ? values.country && values.country : "",
+        clients: values
+          ? values.clients &&
+            values.clients
+              .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+              .join(",")
+          : "",
+        country: values
+          ? values.country &&
+            values.country.charAt(0).toUpperCase() + values.country.slice(1)
+          : "",
         leadArchitects: values
-          ? values.leadArchitects && values.leadArchitects.join(",")
+          ? values.leadArchitects &&
+            values.leadArchitects
+              .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+              .join(",")
           : "",
         manufacturers: values
-          ? values.manufacturers && values.manufacturers.join(",")
+          ? values.manufacturers &&
+            values.manufacturers
+              .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+              .join(",")
           : "",
-        materials: values ? values.materials && values.materials.join(",") : "",
+        materials: values
+          ? values.materials &&
+            values.materials
+              .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+              .join(",")
+          : "",
         photographs: values
-          ? values.photographs && values.photographs.join(",")
+          ? values.photographs &&
+            values.photographs
+              .map((item) => item.charAt(0).toUpperCase() + item.slice(1))
+              .join(",")
           : "",
         year: values
           ? dayjs(values && values.year && values.year.toString())
