@@ -184,7 +184,7 @@ const index = ({ user }) => {
                 <div className="mb-2">
                   <MoneyCollectOutlined className="mr-2" /> Price
                 </div>
-                {fetchFeed ? fetchFeed.price : "N/A"}
+                {fetchFeed ? fetchFeed.price + " Rs." : "N/A"}
               </div>
             </div>
             <div className="p-4">

@@ -205,7 +205,7 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
                         </div>
                         <div className="flex items-center">
                           <MoneyCollectOutlined className="mr-2" /> Price:{" "}
-                          {val ? val.price : "N/A"}
+                          {val ? val.price + " Rs." : "N/A"}
                         </div>
                       </div>
                     </div>
