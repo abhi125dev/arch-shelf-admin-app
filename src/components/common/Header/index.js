@@ -24,7 +24,7 @@ const Header = ({ showSideBar, setShowSideBar, signOutSuccess, user }) => {
           <div className="profile-menu dropdown-toggle" data-toggle="dropdown">
             <div className="profile-pic">
               <Avatar
-                style={{ background: "#16975f" }}
+                style={{ background: "#f5bf42", color: "black" }}
                 src={user && user.profile_pic_path && user.profile_pic_path}
               >
                 {getInitials(user && user.name)}

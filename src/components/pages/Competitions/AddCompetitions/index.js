@@ -368,7 +368,7 @@ const AddCompetitions = ({ user, feeds }) => {
                                 icon={<DeleteOutlined />}
                                 shape="circle"
                                 style={{
-                                  backgroundColor: "#16975f",
+                                  backgroundColor: "#f5bf42",
                                   color: "white",
                                   display: "flex",
                                   flexDirection: "column",
@@ -458,7 +458,7 @@ const AddCompetitions = ({ user, feeds }) => {
                         icon={<UploadOutlined />}
                         shape="circle"
                         style={{
-                          backgroundColor: "#16975f",
+                          backgroundColor: "#f5bf42",
                           color: "white",
                           display: "flex",
                           flexDirection: "column",
@@ -486,6 +486,11 @@ const AddCompetitions = ({ user, feeds }) => {
                   type="primary"
                   htmlType="submit"
                   disabled={loading}
+                  style={{
+                    backgroundColor: "#f5bf42",
+                    borderColor: "#f5bf42",
+                    color: "black",
+                  }}
                 >
                   {feedId
                     ? `${loading ? "Updating..." : "Update"}`

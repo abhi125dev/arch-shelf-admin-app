@@ -384,7 +384,7 @@ const FeedForm = ({
                                   icon={<DeleteOutlined />}
                                   shape="circle"
                                   style={{
-                                    backgroundColor: "#16975f",
+                                    backgroundColor: "#f5bf42",
                                     color: "white",
                                     display: "flex",
                                     flexDirection: "column",
@@ -420,7 +420,7 @@ const FeedForm = ({
                                   icon={<DeleteOutlined />}
                                   shape="circle"
                                   style={{
-                                    backgroundColor: "#16975f",
+                                    backgroundColor: "#f5bf42",
                                     color: "white",
                                     display: "flex",
                                     flexDirection: "column",
@@ -467,7 +467,7 @@ const FeedForm = ({
                     icon={<UploadOutlined />}
                     shape="circle"
                     style={{
-                      backgroundColor: "#16975f",
+                      backgroundColor: "#f5bf42",
                       color: "white",
                       display: "flex",
                       flexDirection: "column",
@@ -494,6 +494,11 @@ const FeedForm = ({
               type="primary"
               htmlType="submit"
               disabled={loading}
+              style={{
+                backgroundColor: "#f5bf42",
+                borderColor: "#f5bf42",
+                color: "black",
+              }}
             >
               {feedId
                 ? `${loading ? "Updating..." : "Update"}`

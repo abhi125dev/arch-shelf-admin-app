@@ -112,6 +112,11 @@ const Resources = ({ user, feeds, getFeedsFunc }) => {
             size="large"
             type="primary"
             onClick={() => history.push("/resource/add")}
+            style={{
+              backgroundColor: "#f5bf42",
+              borderColor: "#f5bf42",
+              color: "black",
+            }}
           >
             Add resource
           </Button>

@@ -590,7 +590,7 @@ const ProjectForm = ({
                                   icon={<DeleteOutlined />}
                                   shape="circle"
                                   style={{
-                                    backgroundColor: "#16975f",
+                                    backgroundColor: "#f5bf42",
                                     color: "white",
                                     display: "flex",
                                     flexDirection: "column",
@@ -626,7 +626,7 @@ const ProjectForm = ({
                                   icon={<DeleteOutlined />}
                                   shape="circle"
                                   style={{
-                                    backgroundColor: "#16975f",
+                                    backgroundColor: "#f5bf42",
                                     color: "white",
                                     display: "flex",
                                     flexDirection: "column",
@@ -673,7 +673,7 @@ const ProjectForm = ({
                     icon={<UploadOutlined />}
                     shape="circle"
                     style={{
-                      backgroundColor: "#16975f",
+                      backgroundColor: "#f5bf42",
                       color: "white",
                       display: "flex",
                       flexDirection: "column",
@@ -700,6 +700,11 @@ const ProjectForm = ({
               type="primary"
               htmlType="submit"
               disabled={loading}
+              style={{
+                backgroundColor: "#f5bf42",
+                borderColor: "#f5bf42",
+                color: "black",
+              }}
             >
               {feedId
                 ? `${loading ? "Updating..." : "Update"}`

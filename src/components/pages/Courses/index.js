@@ -117,6 +117,11 @@ const Courses = ({ user, feeds, getFeedsFunc }) => {
             size="large"
             type="primary"
             onClick={() => history.push("/course/add")}
+            style={{
+              backgroundColor: "#f5bf42",
+              borderColor: "#f5bf42",
+              color: "black",
+            }}
           >
             Add course
           </Button>

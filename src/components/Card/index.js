@@ -34,7 +34,7 @@ const Card = ({ item, type }) => {
               </span>
               <div
                 className="font-bold text-gray-100 rounded-full py-2 px-4"
-                style={{ backgroundColor: "#16975f" }}
+                style={{ backgroundColor: "#f5bf42", color: "black" }}
               >
                 {item ? item.category && item.category.name : "N/A"}
               </div>
@@ -74,7 +74,7 @@ const Card = ({ item, type }) => {
                 <div className="flex items-center">
                   <div className="profile-pic">
                     <Avatar
-                      style={{ background: "#16975f" }}
+                      style={{ background: "#f5bf42", color: "black" }}
                       src={
                         item &&
                         item.user &&

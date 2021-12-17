@@ -114,6 +114,11 @@ const Products = ({ user, getFeedsFunc, feeds }) => {
             size="large"
             type="primary"
             onClick={() => history.push("/product/add")}
+            style={{
+              backgroundColor: "#f5bf42",
+              borderColor: "#f5bf42",
+              color: "black",
+            }}
           >
             Add product
           </Button>

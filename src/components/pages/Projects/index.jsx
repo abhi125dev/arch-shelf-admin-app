@@ -114,6 +114,11 @@ const Projects = ({ user, getFeedsFunc, feeds }) => {
             size="large"
             type="primary"
             onClick={() => history.push("/project/add")}
+            style={{
+              backgroundColor: "#f5bf42",
+              borderColor: "#f5bf42",
+              color: "black",
+            }}
           >
             Add project
           </Button>

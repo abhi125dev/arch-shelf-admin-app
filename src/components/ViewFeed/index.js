@@ -136,6 +136,11 @@ const ViewBlog = ({ user, getFeedFunc, feeds }) => {
               onClick={() =>
                 history.push(`/${feeds.feedDetail.type}/${id}/edit`)
               }
+              style={{
+                backgroundColor: "#f5bf42",
+                borderColor: "#f5bf42",
+                color: "black",
+              }}
             >
               Edit
             </Button>

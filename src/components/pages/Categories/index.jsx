@@ -184,6 +184,7 @@ const Categories = ({ user, getCategoriesFunc, categories }) => {
           size="large"
           type="primary"
           onClick={() => setCategoryModal(true)}
+          style={{ backgroundColor: "#f5bf42", borderColor: "#f5bf42" }}
         >
           Add category
         </Button>

@@ -113,7 +113,7 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
         </div>
         <div
           className="font-bold text-gray-100 rounded-full py-2 px-4"
-          style={{ backgroundColor: "#16975f" }}
+          style={{ backgroundColor: "#f5bf42" }}
         >
           {item ? item.category && item.category.name : "N/A"}
         </div>
@@ -123,7 +123,7 @@ const CardDetails = ({ item, backLinks, user, getCommentsFunc, comments }) => {
         <div className="flex items-center">
           <div className="profile-pic">
             <Avatar
-              style={{ background: "#16975f" }}
+              style={{ background: "#f5bf42" }}
               src={
                 item &&
                 item.user &&

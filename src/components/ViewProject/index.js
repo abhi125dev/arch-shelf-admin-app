@@ -134,6 +134,11 @@ const ViewProject = ({ user, getFeedFunc, feeds }) => {
               type="primary"
               className="mr-2"
               onClick={() => history.push(`/projects/${id}/edit`)}
+              style={{
+                backgroundColor: "#f5bf42",
+                borderColor: "#f5bf42",
+                color: "black",
+              }}
             >
               Edit
             </Button>

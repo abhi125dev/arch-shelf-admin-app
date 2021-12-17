@@ -113,6 +113,11 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
             size="large"
             type="primary"
             onClick={(key) => history.push("/competition/add")}
+            style={{
+              backgroundColor: "#f5bf42",
+              borderColor: "#f5bf42",
+              color: "black",
+            }}
           >
             Add competition
           </Button>
@@ -146,7 +151,7 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
                       </span>
                       <div
                         className="font-bold text-gray-100 rounded-full py-2 px-4"
-                        style={{ backgroundColor: "#16975f" }}
+                        style={{ backgroundColor: "#f5bf42", color: "black" }}
                       >
                         {val ? val.status : "N/A"}
                       </div>
@@ -217,7 +222,7 @@ const Competitions = ({ user, feeds, getFeedsFunc }) => {
                         <div className="flex items-center">
                           <div className="profile-pic">
                             <Avatar
-                              style={{ background: "#16975f" }}
+                              style={{ background: "#f5bf42", color: "black" }}
                               src={
                                 val &&
                                 val.user &&

@@ -90,6 +90,11 @@ const index = ({ user }) => {
               type="primary"
               className="mr-2"
               onClick={() => history.push(`/competitions/${id}/edit`)}
+              style={{
+                backgroundColor: "#f5bf42",
+                borderColor: "#f5bf42",
+                color: "black",
+              }}
             >
               Edit
             </Button>
@@ -122,7 +127,7 @@ const index = ({ user }) => {
             </div>
             <div
               className="font-bold text-gray-100 rounded-full py-2 px-4"
-              style={{ backgroundColor: "#16975f" }}
+              style={{ backgroundColor: "#f5bf42" }}
             >
               {fetchFeed ? fetchFeed.status : "N/A"}
             </div>
