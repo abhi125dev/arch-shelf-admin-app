@@ -95,6 +95,11 @@ const LoginForm = ({ signInSuccess }) => {
                         type="primary"
                         htmlType="submit"
                         disabled={loading}
+                        style={{
+                          backgroundColor: "#f5bf42",
+                          borderColor: "#f5bf42",
+                          color: "black",
+                        }}
                         className="button-style-fullwidth-button"
                       >
                         {loading ? "Loading..." : "Login"}
