@@ -36,6 +36,7 @@ const ViewBlog = ({ user, getFeedFunc, feeds }) => {
   const onChange = () => {
     const body = {
       feed: id,
+      feedType: "feed",
     };
     addDashboardFeed({ body })
       .then((res) => {

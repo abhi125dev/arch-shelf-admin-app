@@ -36,6 +36,7 @@ const ViewProject = ({ user, getFeedFunc, feeds }) => {
   const onChange = () => {
     const body = {
       feed: id,
+      feedType: "project",
     };
     addDashboardFeed({ body })
       .then((res) => {
