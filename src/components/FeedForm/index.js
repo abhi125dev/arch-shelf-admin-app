@@ -196,7 +196,7 @@ const FeedForm = ({
               category: values.blogCategory,
               shortDescription: values.shortDescription,
               body: editorBody,
-              // url: values.url,
+              authorName: values.authorName,
               type: pageType,
             };
             const bodyFormData = new FormData();
@@ -206,7 +206,7 @@ const FeedForm = ({
               bodyFormData.append("shortDescription", body.shortDescription);
             }
             bodyFormData.append("body", editorBody);
-            // bodyFormData.append("url", body.url);
+            bodyFormData.append("authorName", body.authorName);
             bodyFormData.append("type", pageType);
             // bodyFormData.append("media", contentList);
             contentList.map((item) => bodyFormData.append(item.name, item));
@@ -310,6 +310,14 @@ const FeedForm = ({
                 }
               >
                 <Input size="large" placeholder="Enter short description" />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+              <Form.Item
+                name="authorName"
+                label={<p className="font-medium text-gray-800">Author Name</p>}
+              >
+                <Input size="large" placeholder="Enter author name" />
               </Form.Item>
             </Col>
             <Col xl={24} lg={24} md={24} sm={24} xs={24}>

@@ -82,11 +82,21 @@ const Card = ({ item, type }) => {
                         item.user.profile_pic_path
                       }
                     >
-                      {getInitials(item ? item.user && item.user.name : "N/A")}
+                      {getInitials(
+                        item
+                          ? item.authorName
+                            ? item.authorName
+                            : item.user.name
+                          : "N/A"
+                      )}
                     </Avatar>
                   </div>
                   <div className="font-bold text-gray-700 hover:underline">
-                    {item ? item.user && item.user.name : "N/A"}
+                    {item
+                      ? item.authorName
+                        ? item.authorName
+                        : item.user.name
+                      : "N/A"}
                   </div>
                 </div>
               </div>
