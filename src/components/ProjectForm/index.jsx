@@ -170,6 +170,7 @@ const ProjectForm = ({
         blogName: values ? values.title : "",
         url: values ? values.url : "",
         shortDescription: values ? values.shortDescription : "",
+        authorName: values ? values.authorName : "",
         architects: values
           ? values.architects &&
             values.architects
@@ -305,6 +306,10 @@ const ProjectForm = ({
                   values.leadArchitects.toLowerCase()
               );
             }
+            if (values && values.authorName) {
+              bodyFormData.append("authorName", values && values.authorName);
+            }
+
             if (values && values.photographs) {
               bodyFormData.append(
                 "photographs",
@@ -516,6 +521,14 @@ const ProjectForm = ({
                   size="large"
                   placeholder="Enter materials ',' separated"
                 />
+              </Form.Item>
+            </Col>
+            <Col xs={24} sm={24} md={12} lg={12} xl={12}>
+              <Form.Item
+                name="authorName"
+                label={<p className="font-medium text-gray-800">Author Name</p>}
+              >
+                <Input size="large" placeholder="Enter author name" />
               </Form.Item>
             </Col>
             <Col xl={24} lg={24} md={24} sm={24} xs={24}>

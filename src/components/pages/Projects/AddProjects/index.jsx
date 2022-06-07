@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withContext } from "Context";
-import FeedForm from "../../../FeedForm";
 import ProjectForm from "../../../ProjectForm";
 
 const AddProjects = () => {
